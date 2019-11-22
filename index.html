@@ -80,6 +80,7 @@
             if(RIGHT){ xMovement = 0.2; }
             if(TOP){ yMovement = 0.2; }
             if(BOTTOM){ yMovement = -0.2; }
+            if(SHOOT){ spawnshoot(); }
         }
 
         document.onkeydown = function(e){
@@ -87,6 +88,7 @@
             if(e.keyCode == 68 ) RIGHT = true;
             if(e.keyCode == 87 ) TOP = true;
             if(e.keyCode == 83 ) BOTTOM = true;
+            if(e.keyCode == 75 ) SHOOT = true;
         }
         
         document.onkeyup = function(e){
@@ -94,6 +96,7 @@
             if(e.keyCode == 68 ) RIGHT = false;
             if(e.keyCode == 87 ) TOP = false;
             if(e.keyCode == 83 ) BOTTOM = false;
+            if(e.keyCode == 75 ) SHOOT = false;
         }
 
         document.addEventListener("keydown", onDocumentKeyDown, false);
@@ -112,7 +115,33 @@
             
             // bagian ini untuk spawn bullet
             if(keyCode == 75 ){ // K
-                var bullet = new THREE.Mesh(
+                //spawnshoot();    
+            }
+            // bagian pergerakan ini dinonaktifkan karena udah ditangani diluar bagian
+
+            // // up
+            // if (keyCode == 87) {
+            //     yMovement = 0.2;
+            //     // down
+            // }if (keyCode == 83) {
+            //     yMovement = -0.2;
+            //     // left
+            // }if (keyCode == 65) {
+            //     xMovement = -0.2;
+            //     // right
+            // }if (keyCode == 68) {
+            //     xMovement = 0.2;
+            //     // space
+            // }if (keyCode == 32) {
+            //     cube1.position.x = 0.0;
+            //     cube1.position.y = 0.0;
+            // }
+            
+        });
+
+        function spawnshoot(){
+
+            var bullet = new THREE.Mesh(
                     new THREE.SphereGeometry(0.1,0.1),
                     new THREE.MeshBasicMaterial({color : 0xffffff})
                     );
@@ -138,31 +167,11 @@
 
                 bullets.push(bullet);
                 scene.add(bullet);
-            }
-            // bagian pergerakan ini dinonaktifkan karena udah ditangani diluar bagian
-
-            // // up
-            // if (keyCode == 87) {
-            //     yMovement = 0.2;
-            //     // down
-            // }if (keyCode == 83) {
-            //     yMovement = -0.2;
-            //     // left
-            // }if (keyCode == 65) {
-            //     xMovement = -0.2;
-            //     // right
-            // }if (keyCode == 68) {
-            //     xMovement = 0.2;
-            //     // space
-            // }if (keyCode == 32) {
-            //     cube1.position.x = 0.0;
-            //     cube1.position.y = 0.0;
-            // }
             
-        });
+        }
 
         function shoot(){
-
+            
             // loop untuk bergerakan bullet yang telah dispawn
             for( var index = 0; index<bullets.length; index += 1 ) {
             
