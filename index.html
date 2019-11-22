@@ -20,7 +20,10 @@
     <script>
 
         // bagian inisiasi objek
-
+        
+        var object = [];
+        var bullets = [];
+        
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         var renderer = new THREE.WebGLRenderer();
@@ -31,6 +34,7 @@
         var material = new THREE.MeshBasicMaterial({
             color: 0xffff
         });
+
         var cube1 = new THREE.Mesh(geometry, material);
         cube1.position.x = 0;
         cube1.position.y = -3;
@@ -68,9 +72,10 @@
         var LEFT = false,
         RIGHT = false,
         TOP = false,
-        BOTTOM = false;
+        BOTTOM = false,
+        SHOOT = false;
 
-        function move(){
+        function action(){
             if(LEFT){ xMovement = -0.2; }
             if(RIGHT){ xMovement = 0.2; }
             if(TOP){ yMovement = 0.2; }
@@ -101,30 +106,84 @@
         function onDocumentKeyDown(event) {
         }
 
-        // document.body.addEventListener('keydown', function(e) {
-        //     var keyCode = event.which;
-        //     // up
-        //     if (keyCode == 87) {
-        //         yMovement = 0.2;
-        //         // down
-        //     }if (keyCode == 83) {
-        //         yMovement = -0.2;
-        //         // left
-        //     }if (keyCode == 65) {
-        //         xMovement = -0.2;
-        //         // right
-        //     }if (keyCode == 68) {
-        //         xMovement = 0.2;
-        //         // space
-        //     }if (keyCode == 32) {
-        //         cube1.position.x = 0.0;
-        //         cube1.position.y = 0.0;
-        //     }
-        // });
+        document.body.addEventListener('keydown', function(e) {
+            
+            var keyCode = event.which;
+            
+            // bagian ini untuk spawn bullet
+            if(keyCode == 75 ){ // K
+                var bullet = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.1,0.1),
+                    new THREE.MeshBasicMaterial({color : 0xffffff})
+                    );
+
+                bullet.velocity = new THREE.Vector3(0,0.3,0);
+                
+                // bullet yang dispawn akan berada dalam pesawat
+                bullet.position.set(
+                    cube1.position.x,
+                    cube1.position.y,
+                    cube1.position.z
+                )
+                
+                // bullet yang dispawn akan memiliki lifetime selama 1 detik.
+                // untuk mengubah lifetime, ubah 1000 yang ada pada fungsi setTimeout()
+                bullet.alive = true;
+                setTimeout(function(){
+                    bullet.alive = false;
+                    scene.remove(bullet);
+                }, 1000
+                    
+                );
+
+                bullets.push(bullet);
+                scene.add(bullet);
+            }
+            // bagian pergerakan ini dinonaktifkan karena udah ditangani diluar bagian
+
+            // // up
+            // if (keyCode == 87) {
+            //     yMovement = 0.2;
+            //     // down
+            // }if (keyCode == 83) {
+            //     yMovement = -0.2;
+            //     // left
+            // }if (keyCode == 65) {
+            //     xMovement = -0.2;
+            //     // right
+            // }if (keyCode == 68) {
+            //     xMovement = 0.2;
+            //     // space
+            // }if (keyCode == 32) {
+            //     cube1.position.x = 0.0;
+            //     cube1.position.y = 0.0;
+            // }
+            
+        });
+
+        function shoot(){
+
+            // loop untuk bergerakan bullet yang telah dispawn
+            for( var index = 0; index<bullets.length; index += 1 ) {
+            
+                // kalao ternyata bulletnya belum dibikin sama sekali, ya skip
+                if( bullets[index] === undefined ) continue;
+                // ketika bullet telah mati, maka tidak perlu dirender. maka di skip ke bullet selanjutnya
+                // dan bullet yang mati di-remove dari list bullets
+                if( bullets[index].alive == false ){
+                    bullets.splice(index,1);
+                    continue;
+                }
+        
+            bullets[index].position.add(bullets[index].velocity);
+        }
+        
+        }
 
         
         function animate() {
-            move();
+            action();
+            shoot();
             cube.rotation.x += 0.01;
             cube.rotation.y += 0.01;
             cube1.position.y += yMovement;
