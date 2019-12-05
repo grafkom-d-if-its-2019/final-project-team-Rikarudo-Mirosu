@@ -181,11 +181,9 @@
             // untuk mengubah lifetime, ubah 1000 yang ada pada fungsi setTimeout()
             bullet.alive = true;
             setTimeout(function() {
-                    bullet.alive = false;
-                    scene.remove(bullet);
-                }, 1000
-
-            );
+                bullet.alive = false;
+                scene.remove(bullet);
+            }, 1000);
 
             bullets.push(bullet);
             scene.add(bullet);
@@ -210,22 +208,22 @@
                 bullets[index].position.add(bullets[index].velocity);
             }
         }
-        scene.add(new cina().object);
-
-        scene.add(new Batak().object);
+        var data = new cina();
+        var data2 = new Batak();
+        scene.add(data.object);
+        scene.add(data2.object);
+        data.VibeCheck();
+        data2.VibeCheck();
 
         function animate() {
             action();
             shoot();
-            //Spawn();
-
             if (delayshoot < 6)
                 delayshoot++;
             cube1.position.y += yMovement;
             cube1.position.x += xMovement;
             requestAnimationFrame(animate);
             renderer.render(scene, camera);
-
         }
         animate();
     </script>

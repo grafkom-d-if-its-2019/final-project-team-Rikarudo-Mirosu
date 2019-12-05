@@ -30,9 +30,14 @@ class musuh {
     constructor(health, attack) {
         this.health = health;
         this.attack = attack;
+        this._object = null;
     }
     VibeCheck() {
+        scene.remove(this.object);
         delete this;
+    }
+    get object() {
+        return this._object;
     }
 }
 
@@ -44,9 +49,6 @@ class cina extends musuh {
     shootPeebles() {
 
     }
-    get object() {
-        return this._object;
-    }
 }
 
 
@@ -57,8 +59,5 @@ class Batak extends musuh {
     }
     shootPeebles() {
 
-    }
-    get object() {
-        return this._object;
     }
 }
