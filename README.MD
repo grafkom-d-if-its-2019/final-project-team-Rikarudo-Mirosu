@@ -9,10 +9,14 @@ https://docs.google.com/presentation/d/1iuHXLqilcWpaNV5-3mlo5djqswdu9Rodf5fuhaZe
 * Enemy plane-Player bullet
 * Enemy plane-Player plane
 * Enemy bullet-Player plane
-2. Enemy plane spawning
+2. Enemy plane spawning [ 50% ]
 3. Enemy plane movement pattern
 4. Enemy plane shot pattern
 5. Enemy plane variants
-6. Health system in Player plane
-7. Health system in Enemy plane
+6. Health system in Player plane [ 25% ]
+7. Health system in Enemy plane [ 25% ]
 8. Level background movement
+
+### BASIC MOVEMENT :
+1. WASD - Movement
+2. K - Shoot

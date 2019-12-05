@@ -1,0 +1,36 @@
+unused.txt
+
+file ini berfungsi untuk menyimpan snippet yang tidak dipakai lagi
+
+<index.html>
+
+                //document.body.addEventListener('keydown', function(e) {
+
+        //    var keyCode = event.which;
+
+            // bagian ini untuk spawn bullet
+            // bagian ini di handle diluar fungsi ini
+            // if (keyCode == 75) { // K
+            //     spawnshoot();
+            // }
+            // bagian pergerakan ini dinonaktifkan karena udah ditangani diluar bagian
+
+            // // up
+            // if (keyCode == 87) {
+            //     yMovement = 0.2;
+            //     // down
+            // }if (keyCode == 83) {
+            //     yMovement = -0.2;
+            //     // left
+            // }if (keyCode == 65) {
+            //     xMovement = -0.2;
+            //     // right
+            // }if (keyCode == 68) {
+            //     xMovement = 0.2;
+            //     // space
+            // }if (keyCode == 32) {
+            //     cube1.position.x = 0.0;
+            //     cube1.position.y = 0.0;
+            // }
+
+        //});
