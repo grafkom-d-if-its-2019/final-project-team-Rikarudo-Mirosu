@@ -1,4 +1,5 @@
-function Spawn() {
+//fungsi untuk membuat object minions
+function Spawn() { //tulung diisikan Geomtery dan material untuk minions
     var geometry = new THREE.BoxGeometry(1, 1, 1);
     var material = new THREE.MeshBasicMaterial({
         color: 0xffff
@@ -11,8 +12,8 @@ function Spawn() {
     )
     return cubec;
 };
-
-function SpawnBoss() {
+//fungsi untuk membuat object minions
+function SpawnBoss() { //tulung diisikan Geomtery dan material untuk minions
     var geometry = new THREE.BoxGeometry(1, 1, 1);
     var material = new THREE.MeshBasicMaterial({
         color: 0x0afff
@@ -39,9 +40,15 @@ class musuh {
     get object() {
         return this._object;
     }
+    set EnemyHit() {
+        this.health -= 3;
+        if (this.health < 0) {
+            this.VibeCheck();
+        }
+    }
 }
 
-class cina extends musuh {
+class Minions extends musuh {
     constructor() {
         super(1, 12);
         this._object = Spawn();
@@ -52,7 +59,7 @@ class cina extends musuh {
 }
 
 
-class Batak extends musuh {
+class Boss extends musuh {
     constructor() {
         super(1000, 120);
         this._object = SpawnBoss();
@@ -61,3 +68,4 @@ class Batak extends musuh {
 
     }
 }
+5
