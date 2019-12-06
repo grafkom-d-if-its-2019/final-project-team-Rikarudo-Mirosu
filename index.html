@@ -25,6 +25,7 @@
         // bagian inisiasi objek
         var object = [];
         var bullets = [];
+        var enemy = [];
 
 
         var scene = new THREE.Scene();
@@ -186,12 +187,9 @@
                 bullet.alive = false;
                 scene.remove(bullet);
             }, 1000);
-
             bullets.push(bullet);
             scene.add(bullet);
-
         }
-
 
         function shoot() {
 
@@ -214,12 +212,11 @@
         var data2 = new Boss();
         scene.add(data.object);
         scene.add(data2.object);
-        //data.VibeCheck();
-        data2.VibeCheck();
 
         function animate() {
             action();
             shoot();
+            Hitbox(enemy);
             if (delayshoot < 6)
                 delayshoot++;
             cube1.position.y += yMovement;

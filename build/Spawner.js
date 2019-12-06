@@ -40,7 +40,7 @@ class musuh {
     get object() {
         return this._object;
     }
-    set EnemyHit() {
+    EnemyHit() {
         this.health -= 3;
         if (this.health < 0) {
             this.VibeCheck();
@@ -52,6 +52,7 @@ class Minions extends musuh {
     constructor() {
         super(1, 12);
         this._object = Spawn();
+        enemy.push(this);
     }
     shootPeebles() {
 
@@ -63,6 +64,7 @@ class Boss extends musuh {
     constructor() {
         super(1000, 120);
         this._object = SpawnBoss();
+        enemy.push(this);
     }
     shootPeebles() {
 
