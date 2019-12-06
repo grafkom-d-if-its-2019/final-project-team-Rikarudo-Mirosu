@@ -56,6 +56,7 @@ class Minions extends musuh {
         super(1, 12);
         this._object = Spawn();
         enemy.push(this);
+        scene.add(this._object);
     }
     shootPeebles() {
 
@@ -68,8 +69,28 @@ class Boss extends musuh {
         super(100, 120);
         this._object = SpawnBoss();
         enemy.push(this);
+        scene.add(this._object);
     }
     shootPeebles() {
+
+    }
+}
+
+function enemySpawner() {
+    if (time == 3) {
+        new Minions();
+    };
+
+    if (time == 4) {
+        new Boss();
+    }
+
+    if (time == 10) {
+        new Minions();
+    };
+
+    if (time == 15) {
+        new Boss();
 
     }
 }

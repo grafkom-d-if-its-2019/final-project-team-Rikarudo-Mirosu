@@ -12,7 +12,7 @@ class Player {
         this._object = player; //ini khusus untuk javascript, atribut ini diangkap sebuah atribut object yang memiliki fungsi get / set
         this.life = 100; //inisiasi life sebesar 100, dengan anggap pakai sistem health point
         scene.add(player);
-        //perlu diingat this adalah instansi dengan kelas Player, bukan object, untuk akses objectnya, pakai (kelas).object
+        //perlu diingat this adalah instansi dengan kelas Player, bukan object, jadi untuk akses objectnya, pakai (kelas).object
     }
 
     get object() {

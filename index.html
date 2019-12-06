@@ -26,7 +26,8 @@
         // bagian inisiasi objek
         var bullets = [];
         var enemy = [];
-
+        var frame = 0;
+        var time = 0;
 
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -70,10 +71,9 @@
 
         camera.lookAt(plane.position);
 
-        var data = new Minions();
-        var data2 = new Boss();
-        scene.add(data.object);
-        scene.add(data2.object);
+        //contoh pembuatan instansi
+        // var data = new Minions();
+        // var data2 = new Boss();
 
         function action() {
             if (LEFT) {
@@ -100,7 +100,13 @@
             action();
             shoot();
             Hitbox();
-            //oh perlu diketahui, apabila ingin membuat kelas dan ingin mengatur posisinya,
+            frame++;
+            if (frame >= 60) {
+                time++;
+                enemySpawner();
+                frame = 0;
+            }
+            //oh, perlu diketahui, apabila ingin membuat kelas dan ingin mengatur posisinya,
             // harus objek dari kelasnya yang di rombak
             player1.object.position.y += yMovement;
             player1.object.position.x += xMovement;
