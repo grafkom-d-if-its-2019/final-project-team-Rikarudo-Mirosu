@@ -26,15 +26,11 @@
 
             bullets.push(bullet);
             scene.add(bullet);
-
         }
 
-
         function shoot() {
-
             // loop untuk bergerakan bullet yang telah dispawn
             for (var index = 0; index < bullets.length; index += 1) {
-
                 // kalao ternyata bulletnya belum dibikin sama sekali, ya skip
                 if (bullets[index] === undefined) continue;
                 // ketika bullet telah mati, maka tidak perlu dirender. maka di skip ke bullet selanjutnya

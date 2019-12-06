@@ -6,7 +6,7 @@ function Spawn() { //tulung diisikan Geomtery dan material untuk minions
     });
     var cubec = new THREE.Mesh(geometry, material);
     cubec.position.set(
-        cubec.position.x = 0,
+        cubec.position.x = 3,
         cubec.position.y = 0,
         cubec.position.z = 6
     )
@@ -35,6 +35,7 @@ class musuh {
     }
     VibeCheck() {
         scene.remove(this.object);
+        enemy.splice(this, 1);
         delete this;
     }
     get object() {
@@ -62,7 +63,7 @@ class Minions extends musuh {
 
 class Boss extends musuh {
     constructor() {
-        super(1000, 120);
+        super(100, 120);
         this._object = SpawnBoss();
         enemy.push(this);
     }
