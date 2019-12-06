@@ -10,13 +10,12 @@
 
             // bullet yang dispawn akan berada dalam pesawat
             bullet.position.set(
-                player1.object.position.x,
-                player1.object.position.y + 0.5, // posisi 
-                player1.object.position.z
-            )
-
-            // bullet yang dispawn akan memiliki lifetime selama 1 detik.
-            // untuk mengubah lifetime, ubah 1000 yang ada pada fungsi setTimeout()
+                    player1.object.position.x,
+                    player1.object.position.y + 0.5, // posisi 
+                    player1.object.position.z
+                )
+                // bullet yang dispawn akan memiliki lifetime selama 1 detik.
+                // untuk mengubah lifetime, ubah 1000 yang ada pada fungsi setTimeout()
             bullet.alive = true;
             setTimeout(function() {
                 bullet.alive = false;

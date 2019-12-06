@@ -1,5 +1,6 @@
 class Player {
-    constructor() {
+    constructor() { //construksi dari instansi Player, object dibentuk disini
+        //untuk tama, bentuk dari player diatur di geometri, dan material dibawah ini.
         var geometry = new THREE.BoxGeometry(1, 1, 1);
         var material = new THREE.MeshBasicMaterial({
             color: 0xffff
@@ -8,21 +9,24 @@ class Player {
         player.position.x = 0;
         player.position.y = -3;
         player.position.z = 6;
+        this._object = player; //ini khusus untuk javascript, atribut ini diangkap sebuah atribut object yang memiliki fungsi get / set
+        this.life = 100; //inisiasi life sebesar 100, dengan anggap pakai sistem health point
         scene.add(player);
-        this._object = player;
-        this.yMovement = 0;
-        this.xMovement = 0;
-        this.delayshoot = 0;
-        this.life = 100;
-
+        //perlu diingat this adalah instansi dengan kelas Player, bukan object, untuk akses objectnya, pakai (kelas).object
     }
 
     get object() {
-        return this._object;
+        return this._object; //untuk get object, cara ngaksesnya cukup (instansi).object
     }
     PlayerHit() {
         console.log("Player Life!", this.life);
         this.life -= 10;
+        if (this.life <= 0) this.VibeCheck();
+    }
+
+    VibeCheck() {
+        console.log("Game Over");
+        // stop();
     }
 }
 // kalau di action, shoot diaktifin dan addEventListener, shoot dinonaktifin, tembakannya
@@ -73,34 +77,3 @@ document.body.addEventListener('keyup', function(e) {
 });
 
 function onDocumentKeyDown(event) {}
-
-document.body.addEventListener('keydown', function(e) {
-
-    var keyCode = event.which;
-
-    // bagian ini untuk spawn bullet
-    // bagian ini di handle diluar fungsi ini
-    // if (keyCode == 75) { // K
-    //     spawnshoot();
-    // }
-    // bagian pergerakan ini dinonaktifkan karena udah ditangani diluar bagian
-
-    // // up
-    // if (keyCode == 87) {
-    //     yMovement = 0.2;
-    //     // down
-    // }if (keyCode == 83) {
-    //     yMovement = -0.2;
-    //     // left
-    // }if (keyCode == 65) {
-    //     xMovement = -0.2;
-    //     // right
-    // }if (keyCode == 68) {
-    //     xMovement = 0.2;
-    //     // space
-    // }if (keyCode == 32) {
-    //     cube1.position.x = 0.0;
-    //     cube1.position.y = 0.0;
-    // }
-
-});
