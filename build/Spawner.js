@@ -68,4 +68,3 @@ class Boss extends musuh {
 
     }
 }
-5
