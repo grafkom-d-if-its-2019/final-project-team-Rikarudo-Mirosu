@@ -10,9 +10,9 @@
 
             // bullet yang dispawn akan berada dalam pesawat
             bullet.position.set(
-                cube1.position.x,
-                cube1.position.y + 0.5, // posisi 
-                cube1.position.z
+                player1.object.position.x,
+                player1.object.position.y + 0.5, // posisi 
+                player1.object.position.z
             )
 
             // bullet yang dispawn akan memiliki lifetime selama 1 detik.
@@ -22,7 +22,6 @@
                 bullet.alive = false;
                 scene.remove(bullet);
             }, 1000);
-
             bullets.push(bullet);
             scene.add(bullet);
         }
