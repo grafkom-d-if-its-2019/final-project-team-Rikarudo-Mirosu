@@ -6,7 +6,6 @@
                     color: 0xffffff
                 })
             );
-
             bullet.velocity = new THREE.Vector3(0, 0.3, 0);
 
             // bullet yang dispawn akan berada dalam pesawat

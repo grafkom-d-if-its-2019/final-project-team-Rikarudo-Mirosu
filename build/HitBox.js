@@ -13,7 +13,8 @@ function Hitbox() {
             for (j = 0; j < enemy.length; j++) {
                 if (bullets[i].position.y >= enemy[j].object.position.y &&
                     bullets[i].position.x - enemy[j].object.position.x < 1 && bullets[i].position.x - enemy[j].object.position.x > -1) {
-                    enemy[j].EnemyHit();
+                    if (enemy[j].EnemyHit())
+                        enemy.splice(j, 1);
                     bullets[i].alive = false;
                 }
             }

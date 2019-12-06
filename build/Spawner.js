@@ -35,17 +35,19 @@ class musuh {
     }
     VibeCheck() {
         scene.remove(this.object);
-        enemy.splice(this, 1);
         delete this;
     }
     get object() {
         return this._object;
     }
     EnemyHit() {
+
         this.health -= 3;
         if (this.health < 0) {
             this.VibeCheck();
+            return true;
         }
+        return false;
     }
 }
 
