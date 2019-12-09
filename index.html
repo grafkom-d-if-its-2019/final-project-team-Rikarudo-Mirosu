@@ -98,9 +98,11 @@
         }
 
         function animate() {
+            
             action();
             shoot();
             Hitbox();
+            bulletcheck();
             moveEnemy();
             moveBullet();
             frame++;
@@ -118,7 +120,6 @@
             if (delayshoot < 6)
                 delayshoot++;
 
-            bulletcheck();
             requestAnimationFrame(animate);
             renderer.render(scene, camera);
         }
