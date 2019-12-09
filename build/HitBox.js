@@ -3,6 +3,8 @@ function Hitbox() {
 
     }
 
+    //fungsi ini buat mengehitung jarak absolut dari dua objek. sengaja dipisahkan biar
+    //impelementasi ke fungsi lainnya lebih mudah
     function AbsoluteDistance(a,b){
         var c = Math.abs(a-b);
         return c
@@ -18,13 +20,15 @@ function Hitbox() {
                 player1.PlayerHit();
     }
 
+    //AbsoluteDistance(bullets[i].position.y, enemy[j].object.position.y)
+
     function isEnemyHitWithBullet() {
         //fungsi apabila musuh menyentuh bulet, tiap isi dari list bullet akan dicek, apakah mengenai musuh atau tidak
         var i = j = 0;
         for (i = 0; i < bullets.length; i++) {
             for (j = 0; j < enemy.length; j++) {
-                if (bullets[i].position.y >= enemy[j].object.position.y &&
-                    bullets[i].position.x - enemy[j].object.position.x < 1 && bullets[i].position.x - enemy[j].object.position.x > -1) {
+                if (AbsoluteDistance(bullets[i].position.y, enemy[j].object.position.y) < 1 &&
+                    AbsoluteDistance(bullets[i].position.x, enemy[j].object.position.x) < 1) {
                     if (enemy[j].EnemyHit()) { //fungsi dari Enemy hit akan mereturn true, apabila musuh ter-VibeCheck, false apabila masih hidup
                         enemy.splice(j, 1);
                     }
