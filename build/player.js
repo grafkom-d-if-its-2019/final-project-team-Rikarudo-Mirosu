@@ -7,7 +7,7 @@ class Player {
         });
         var player = new THREE.Mesh(geometry, material);
         player.position.x = 0;
-        player.position.y = -3;
+        player.position.y = -6;
         player.position.z = 6;
         this._object = player; //ini khusus untuk javascript, atribut ini diangkap sebuah atribut object yang memiliki fungsi get / set
         this.life = 100; //inisiasi life sebesar 100, dengan anggap pakai sistem health point
@@ -27,6 +27,27 @@ class Player {
     VibeCheck() {
         console.log("Game Over");
         // stop();
+    }
+    
+    action() {
+        if (LEFT) {
+            xMovement = -0.2;
+        }
+        if (RIGHT) {
+            xMovement = 0.2;
+        }
+        if (TOP) {
+            yMovement = 0.2;
+        }
+        if (BOTTOM) {
+            yMovement = -0.2;
+        }
+        if (SHOOT) {
+            if (delayshoot > 3) {
+                spawnshoot();
+                delayshoot = 0;
+            }
+        }
     }
 }
 // kalau di action, shoot diaktifin dan addEventListener, shoot dinonaktifin, tembakannya
@@ -52,6 +73,7 @@ function action() {
         }
     }
 }
+
 
 document.onkeydown = function(e) {
     if (e.keyCode == 65) LEFT = true;

@@ -22,14 +22,14 @@
             //     scene.remove(bullet);
             // }, 700);
 
-            if(bullet.position.y >= 4 || bullet.position.y <= -7){
-                bullet.alive = false;
-            }
+            //if(bullet.position.y >= 1 || bullet.position.y <= -7){
+            //      bullet.alive = false;
+            // }
 
             bullets.push(bullet);
             scene.add(bullet);
         }
-
+        
         function shoot() {
             // loop untuk bergerakan bullet yang telah dispawn
             for (var index = 0; index < bullets.length; index += 1) {
@@ -53,8 +53,9 @@
                 // ketika bullet telah mati, maka tidak perlu dirender. maka di skip ke bullet selanjutnya
                 // dan bullet yang mati di-remove dari list bullets
                 if (bullets[index].alive == false) {
+                    //bullets.splice(index, 1);
                     scene.remove(bullets[index]);
                     continue;
                 }
-        }
+            }
         }

@@ -3,10 +3,19 @@ function Hitbox() {
 
     }
 
+    function AbsoluteDistance(a,b){
+        var c = Math.abs(a-b);
+        return c
+    }
+
     function isUserHitWithEnemyObject() {
         //fungsi apabila player menyentuh musuh, tiap isi dari list musuh akan dicek, apakah mengenai player atau tidak
         for (j = 0; j < enemy.length; j++)
-            if (player1.object.position.y >= enemy[j].object.position.y) player1.PlayerHit();
+            if (AbsoluteDistance(player1.object.position.y, enemy[j].object.position.y) < 1 && 
+            //if (player1.object.position.y == enemy[j].object.position.y && 
+            AbsoluteDistance(player1.object.position.x, enemy[j].object.position.x) < 1)
+            //player1.object.position.x == enemy[j].object.position.x) 
+                player1.PlayerHit();
     }
 
     function isEnemyHitWithBullet() {
@@ -22,6 +31,7 @@ function Hitbox() {
                     bullets[i].alive = false; //ini akan menset nilai bullets jadi false, biar bullletnya hilang.
                 }
             }
+
         }
     }
     isEnemyHitWithBullet(); //pemanggilan fungsi biar lebih..... rapi.
