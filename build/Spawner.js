@@ -13,7 +13,7 @@ function Spawn(x, y) { //tulung diisikan Geomtery dan material untuk minions
     return cubec;
 };
 //fungsi untuk membuat object minions
-function SpawnBoss(x, y, z) { //tulung diisikan Geomtery dan material untuk minions
+function SpawnBoss(x, y) { //tulung diisikan Geomtery dan material untuk minions
     var geometry = new THREE.BoxGeometry(1, 1, 1);
     var material = new THREE.MeshBasicMaterial({
         color: 0x0afff
@@ -27,11 +27,13 @@ function SpawnBoss(x, y, z) { //tulung diisikan Geomtery dan material untuk mini
     return cubec;
 };
 
+
 class musuh {
-    constructor(health, attack) {
+    constructor(health, attack, speed) {
         this.health = health;
         this.attack = attack;
         this._object = null;
+        this._speed = speed;
     }
     VibeCheck() {
         scene.remove(this.object);
@@ -62,11 +64,17 @@ class musuh {
     set z(z) {
         this._z = z;
     }
+    set speed(speed) {
+        this._speed = speed;
+    }
+    get speed() {
+        return this._speed;
+    }
 }
 
 class Minions extends musuh {
-    constructor(x, y) {
-        super(1, 12);
+    constructor(x, y, speed) {
+        super(6, 12, speed);
         this._object = Spawn(x, y);
         enemy.push(this);
         scene.add(this._object);
@@ -76,15 +84,29 @@ class Minions extends musuh {
     }
     move() {
         if (this.object.position.y >= 2)
-            this.object.translateY(-0.1);
-
+            this.object.translateY(-1 * this.speed);
     }
 }
 
 
+class Minions5xPower extends musuh {
+    constructor(x, y, speed) {
+        super(1, 12, speed);
+        this._object = Spawn(x, y);
+        enemy.push(this);
+        scene.add(this._object);
+    }
+    move() {
+        var coordinate = this.object.position.x - this.speed
+            //x = 10y^1/2
+        this.object.position.x = coordinate;
+        this.object.position.y = Math.pow(coordinate, 2) / 10
+    }
+}
+
 class Boss extends musuh {
-    constructor(x, y) {
-        super(100, 120);
+    constructor(x, y, speed) {
+        super(100, 120, speed);
         this._object = SpawnBoss(x, y);
         enemy.push(this);
         scene.add(this._object);
@@ -118,13 +140,23 @@ function getRandom() {
     else return -a;
 }
 
+// function enemySpawner() {
+
+//     if (time <= 10) {
+//         // new Minions(getRandom() % 10, 10);
+
+//         // new Minions(getRandom() % 10, 10);
+
+//         // new Minions(getRandom() % 10, 10);
+//         new Minions(getRandom() % 10, 10, 0.3)
+//         new Minions5xPower(10, 10, 0.08)
+//     }
+// }
+
+
 function enemySpawner() {
-
-    if (time <= 10) {
-        new Minions(new Minions(getRandom() % 10, 10));
-
-        new Minions(new Minions(getRandom() % 10, 10));
-
-        new Minions(new Minions(getRandom() % 10, 10));
+    if (time <= 3) {
+        new Minions(getRandom() % 10, 10, 0.03)
+        new Minions5xPower(10, 10, 0.08)
     }
 }
