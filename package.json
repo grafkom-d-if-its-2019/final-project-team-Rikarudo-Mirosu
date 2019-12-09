@@ -96,5 +96,9 @@
       "build/three.module.js"
     ],
     "directories": {}
+  },
+  "dependencies": {
+    "jquery-csv": "^1.0.5",
+    "papaparse": "^5.1.0"
   }
 }
