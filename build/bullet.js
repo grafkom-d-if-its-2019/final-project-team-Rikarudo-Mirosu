@@ -17,10 +17,10 @@
                 // bullet yang dispawn akan memiliki lifetime selama 1 detik.
                 // untuk mengubah lifetime, ubah 1000 yang ada pada fungsi setTimeout()
             bullet.alive = true;
-            setTimeout(function() {
-                bullet.alive = false;
-                scene.remove(bullet);
-            }, 1000);
+            // setTimeout(function() {
+            //     bullet.alive = false;
+            //     scene.remove(bullet);
+            // }, 700);
             bullets.push(bullet);
             scene.add(bullet);
         }
@@ -39,4 +39,17 @@
 
                 bullets[index].position.add(bullets[index].velocity);
             }
+        }
+
+        function bulletcheck() {
+            for (var index = 0; index < bullets.length; index += 1) {
+                // kalao ternyata bulletnya belum dibikin sama sekali, ya skip
+                if (bullets[index] === undefined) continue;
+                // ketika bullet telah mati, maka tidak perlu dirender. maka di skip ke bullet selanjutnya
+                // dan bullet yang mati di-remove dari list bullets
+                if (bullets[index].alive == false) {
+                    scene.remove(bullets[index]);
+                    continue;
+                }
+        }
         }
