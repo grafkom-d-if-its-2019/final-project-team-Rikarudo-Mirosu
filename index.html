@@ -55,16 +55,16 @@
             SHOOT = false;
         //ini buat bikin camera
         
-        camera.position.z = 15 //mode normal;
-        //camera.position.z = 70 //mode mata elang;
+        //camera.position.z = 15 //mode normal;
+        camera.position.z = 40 //mode mata elang;
 
         camera.position.y = -5;
         camera.position.x = 0;
 
         var planewidth = 40;
         var planeheight = 30;
-        var plane_limitx = planewidth/2;
-        var plane_limity = planeheight/2;
+        var plane_limitx = (planewidth-6)/2;
+        var plane_limity = (planeheight)/2;
 
         //ini plane atau dataran dari gamenya.
         var geometry = new THREE.PlaneGeometry(planewidth, planeheight, 1, 1);
@@ -85,34 +85,41 @@
         // var data = new Minions();
         // var data2 = new Boss();
 
-    //     function coordinateCheck(){
-    // // if(player.position.x >= plane_limitx || player.position.x <= -plane_limitx){
+        function playerCoordinateCheck(){
+            if(player1.object.position.x >= plane_limitx){
+                
+                player1.object.position.x -= plane_limitx-0.01;
+            }
+            if(player1.object.position.x <= -plane_limitx){
 
-    // //     player.position.x = 0;
-    // // }
-    // // player.position.x = 0;
-    // // player.position.y = -3;
-    //   }
+                player1.object.position.x = -plane_limitx+0.01;
+            }
+
+            // player.position.x = 0;
+            // player.position.y = -3;
+        }
 
         function move(){
         
-            player1.object.position.y += yMovement;
-            
-            if(player1.object.position.x == plane_limitx){
+            player1.object.position.y += yMovement;  
+            // if(player1.object.position.x >= plane_limitx){
 
-                player1.object.position.x = 0;
-            }    
+            //     player1.object.position.x = plane_limitx-0.001;
+            // }
+            // else 
             player1.object.position.x += xMovement;
         }
 
         function animate() {
             
-            //coordinateCheck();
+            
             action();
             move();
+            playerCoordinateCheck();
             shoot();
             Hitbox();
-            bulletcheck();
+            bulletPlaneCheck();
+            bulletAliveCheck();
             moveEnemy();
             moveBullet();
             frame++;
@@ -123,9 +130,7 @@
             }
             //oh, perlu diketahui, apabila ingin membuat kelas dan ingin mengatur posisinya,
             // harus objek dari kelasnya yang di rombak
-            
-            
-            
+
             //perhitungan delay shoot diberi biar tidak terjadi Unintentional Discharge / tiba tiba nembak sendiri!
             if (delayshoot < 6)
                 delayshoot++;

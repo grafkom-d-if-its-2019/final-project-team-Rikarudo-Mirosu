@@ -46,7 +46,8 @@
             }
         }
 
-        function bulletcheck() {
+        function bulletAliveCheck() {
+            
             for (var index = 0; index < bullets.length; index += 1) {
                 // kalao ternyata bulletnya belum dibikin sama sekali, ya skip
                 if (bullets[index] === undefined) continue;
@@ -55,6 +56,18 @@
                 if (bullets[index].alive == false) {
                     //bullets.splice(index, 1);
                     scene.remove(bullets[index]);
+                    continue;
+                }
+            }
+        }
+
+        function bulletPlaneCheck() {
+
+            for (var index = 0; index < bullets.length; index += 1) {
+                
+                if (bullets[index].position.x == plane_limitx) {
+                    //bullets.splice(index, 1);
+                    bullets[index].alive = false;
                     continue;
                 }
             }
