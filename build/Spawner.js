@@ -75,7 +75,9 @@ class Minions extends musuh {
 
     }
     move() {
-        this.object.translateX(0.1);
+        if (this.object.position.y >= 2)
+            this.object.translateY(-0.1);
+
     }
 }
 
@@ -104,27 +106,25 @@ function moveEnemy() {
 
 
 function moveBullet() {
-
     var k = 0;
     for (k = 0; k < bulletEnemy.length; k++) {
         bulletEnemy[k].move();
     }
 }
 
+function getRandom() {
+    var a = crypto.getRandomValues(new Uint32Array(1))
+    if (a % 2 > 0) return a;
+    else return -a;
+}
+
 function enemySpawner() {
-    if (time == 3) {
-        new Minions(3, 3);
-    };
 
-    if (time == 4) {
-        new Boss(0, 0);
-    }
-    if (time == 10) {
-        new Minions(0, 0);
-    };
+    if (time <= 10) {
+        new Minions(new Minions(getRandom() % 10, 10));
 
-    if (time == 15) {
-        new Boss(0, 0);
+        new Minions(new Minions(getRandom() % 10, 10));
 
+        new Minions(new Minions(getRandom() % 10, 10));
     }
 }
