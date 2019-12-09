@@ -21,6 +21,11 @@
             //     bullet.alive = false;
             //     scene.remove(bullet);
             // }, 700);
+
+            if(bullet.position.y >= 4 || bullet.position.y <= -7){
+                bullet.alive = false;
+            }
+
             bullets.push(bullet);
             scene.add(bullet);
         }
