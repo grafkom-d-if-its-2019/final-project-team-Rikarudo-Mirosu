@@ -122,6 +122,43 @@ class MinionsUptoDown extends Minions {
 
     }
 }
+class MinionsRighttoLeft extends Minions {
+    constructor(x, y, speed, xboundary, yboundary, delay) {
+        super(6, 12, speed, delay);
+        this._object = Spawn(x, y);
+        this.xboundary = xboundary
+        this.yboundary = yboundary
+        enemy.push(this);
+        scene.add(this._object);
+    }
+    move() {
+        if (this.object.position.x >= this.xboundary) this.object.translateX(-1 * this.speed);
+        else {
+            if (this.isNotDelayed()) {
+                this.object.translateX(-1 * this.speed);
+            }
+        }
+    }
+}
+
+class MinionsLefttoRight extends Minions {
+    constructor(x, y, speed, xboundary, yboundary, delay) {
+        super(6, 12, speed, delay);
+        this._object = Spawn(x, y);
+        this.xboundary = xboundary
+        this.yboundary = yboundary
+        enemy.push(this);
+        scene.add(this._object);
+    }
+    move() {
+        if (this.object.position.x <= this.xboundary) this.object.translateX(1 * this.speed);
+        else {
+            if (this.isNotDelayed()) {
+                this.object.translateX(1 * this.speed);
+            }
+        }
+    }
+}
 
 
 class MinionsxPower extends Minions {
@@ -283,9 +320,10 @@ function enemySpawner() { //test object
         //new MinionsUptoDown(getRandom() % 10, 10, 0.03, 6, -2, 3) // x , y, speed , xboundary,y boundary,delay
         //new MinionsxPower(25, 10, 0.08, -10, 50, 0)
         //new MinionsxPower(-5, 0.08, 15, 50, 0, 2) //x coordinate,  speed, x translation, Lebar lingkaran, xboundary,delay
-
-        new MinionsxLogLeft(3, -6, 1, 0.01, -6, 0.0001, 3, 2) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay
-        new MinionsxLogRight(3, 3, 1, 0.01, 3, 0.0001, -3, 2)
-            //new MinionsUptoDown(getRandom() % 10, 10, 0.09, 6, 1, 1) // x , y, speed , x boundary, y boundary,delay
+        // new MinionsxLogLeft(3, -6, 1, 0.01, -6, 0.0001, 3, 2) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay
+        // new MinionsxLogRight(3, 3, 1, 0.01, 3, 0.0001, -3, 2)
+        //new MinionsUptoDown(getRandom() % 10, 10, 0.09, 6, 1, 1) // x , y, speed , x boundary, y boundary,delay
+        new MinionsRighttoLeft(20, 1, 0.09, 6, 3, 1) // x , y, speed , x boundary, y boundary,delay
+        new MinionsLefttoRight(-20, 1, 0.09, 2, 3, 1) // x , y, speed , x boundary, y boundary,delay
     }
 }
