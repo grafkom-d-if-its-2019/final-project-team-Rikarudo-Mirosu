@@ -132,17 +132,18 @@ class MinionsxLogLeft extends musuh {
         var coordinate = this.object.position.x + this.speed
             //y = head * log(x + translation)
         this.object.position.x = coordinate;
-        this.object.position.y = this.head * Math.log2((this.lebar * coordinate) - this.translation) + 10
+        this.object.position.y = -1 * this.head * Math.log2((this.lebar * coordinate) - this.translation) + 10
         this.accelerates()
     }
     accelerates() {
         this._speed += this._accelerate;
     }
 }
+
 class MinionsxLogRight extends musuh {
     constructor(head, x, lebar, speed, translation, accelerate) {
         super(6, 12, speed);
-        this._object = Spawn(x, 10);
+        this._object = Spawn(x, 12);
         this.translation = translation;
         this.head = head
         this.lebar = lebar
@@ -151,10 +152,10 @@ class MinionsxLogRight extends musuh {
         scene.add(this._object);
     }
     move() {
-        var coordinate = this.object.position.x + this.speed
+        var coordinate = this.object.position.x - this.speed
             //y = head * log(x + translation)
         this.object.position.x = coordinate;
-        this.object.position.y = this.head * Math.log2((this.lebar * coordinate) - this.translation) + 10
+        this.object.position.y = -1 * this.head * Math.log2(-1 * ((this.lebar * coordinate) - this.translation)) + 10
         this.accelerates()
     }
     accelerates() {
@@ -218,7 +219,8 @@ function enemySpawner() { //test object
         // new MinionsUptoDown(getRandom() % 10, 10, 0.03) // x , y, speed
         // new MinionsxPower(25, 10, 0.08, -10, 50)
         // new MinionsxPower(-25, 10, -0.08, 15, 50) //x coordinate, y coordinate, speed, x translation, Lebar lingkaran
-        new MinionsxLogLeft(-3, -6, 1, 0.05, -6, 0.0005)
-            //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi
+        //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi
+        //new MinionsxLogLeft(3, -6, 1, 0.01, -6, 0.0001)
+        new MinionsxLogRight(3, 3, 1, 0.01, 3, 0.0001)
     }
 }
