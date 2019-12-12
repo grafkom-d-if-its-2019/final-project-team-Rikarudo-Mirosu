@@ -65,7 +65,7 @@
 
             for (var index = 0; index < bullets.length; index += 1) {
                 
-                if (bullets[index].position.x == plane_limitx) {
+                if (bullets[index].position.y >= plane_limity + 6) {
                     //bullets.splice(index, 1);
                     bullets[index].alive = false;
                     continue;
