@@ -95,6 +95,13 @@
         // var data2 = new Boss();
 
         function playerCoordinateCheck() {
+
+            // ngecek kordinat dari player, apakah keluar terrain atau ngga.
+            // kalau iya, bakal dimentokin sebatas terrain
+
+            // yang ini baru sebatas buat kamera normal, bakal
+            // keliatan sempit kalo pakai kamera elang
+
             if (player1.object.position.x >= plane_limitx) {            
                     player1.object.position.x = plane_limitx - 0.01;
             
