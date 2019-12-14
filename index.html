@@ -23,6 +23,9 @@
     <script src="build/HitBox.js"></script>
     <script src="build/player.js"></script>
     <script src="build/music.js"></script>
+    <script src="build/physi.js"></script>
+    <script src="build/simplex-noise.js"></script>
+    <script src="build/perlin.js"></script>
     <script>
         // bagian inisiasi objek
 
@@ -35,6 +38,13 @@
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
+        var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+        scene.add( directionalLight );
+        var spotLight = new THREE.SpotLight(0xffffff);
+        spotLight.position.set(10, 100, 10);
+        scene.add(spotLight);
+        scene.add(new THREE.AmbientLight(0x252525));
+
         var renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.shadowMapEnabled = true;
@@ -44,6 +54,7 @@
             color: 0xffff
         });
         var player1 = new Player();
+        player1.castShadow = true;
 
         var listener = new THREE.AudioListener();
         camera.add(listener);
@@ -70,24 +81,62 @@
         loadMusic()
 
 
+
+    
         var planewidth = 40;
         var planeheight = 30;
         var plane_limitx = (planewidth - 12) / 2;
         var plane_limity = (planeheight - 12 ) / 2;
 
-        //ini plane atau dataran dari gamenya.
-        var geometry = new THREE.PlaneGeometry(planewidth, planeheight, 1, 1);
-        var material = new THREE.MeshBasicMaterial({
-            color: 0x2a2f59,
-            side: THREE.DoubleSide
-        });
-        var plane = new THREE.Mesh(geometry, material);
-        plane.position.z = 0;
-        scene.add(plane);
 
+        
+	// 	// Materials
+	// var  NoiseGen, loader, scene, light, plane, plane_geometry, plane_material, camera;
+	// var planeTexture = new THREE.ImageUtils.loadTexture( 'grass.jpg' ); //256x256
+    // planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping; 
+    // planeTexture.repeat.set( 10, 10 );
+    // var planeMaterial = new THREE.MeshBasicMaterial( { map: planeTexture, side: THREE.DoubleSide } );
+    // // plane_material.wrapS =plane_material.wrapT = THREE.RepeatWrapping;
+	// // plane_material.repeat.set( 2.5, 2.5 );
+		
+	// 	//plane
+	// 	NoiseGen = new SimplexNoise;
+		
+	// planeGeometry = new THREE.PlaneGeometry( planewidth, planeheight, 1, 1 );
+	// 	for ( var i = 0; i <planeGeometry.vertices.length; i++ ) {
+	// 		var vertex =planeGeometry.vertices[i];
+	// 		vertex.z = NoiseGen.noise( vertex.x / 10, vertex.y / 10 ) * 2;
+	// 	}
+	// planeGeometry.computeFaceNormals();
+	// planeGeometry.computeVertexNormals();
+		
+	// 	// If your plane is not square as far as face count then the HeightfieldMesh
+	// 	// takes two more arguments at the end: # of x faces and # of y faces that were passed to THREE.PlaneMaterial
+	// 	// var plane = new Physijs.HeightfieldMesh(
+	// 	// plane_geometry,
+	// 	// plane_material,
+	// 	// 	0, // mass
+    //     // 	50,50);
+    //      var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+	// 	plane.rotation.x = Math.PI / -2;
+	// 	plane.receiveShadow = true;
+	// 	plane.position.z = 0;
+	// 	scene.add( plane );
+
+	var planeTexture = new THREE.ImageUtils.loadTexture( 'grass.jpg' ); //256x256
+    planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping; 
+    planeTexture.repeat.set( 10, 10 );
+    var planeMaterial = new THREE.MeshBasicMaterial( { map: planeTexture, side: THREE.DoubleSide } );
+    var planeGeometry = new THREE.PlaneGeometry(planewidth, planeheight, 1, 1);
+    var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+    plane.receiveShadow = true;
+    plane.position.z = 0;
+    scene.add(plane);
+
+
+    
         //penambahan camera because ofc
         scene.add(camera);
-
         camera.lookAt(plane.position);
 
         //contoh pembuatan instansi
