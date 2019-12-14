@@ -7,5 +7,6 @@
           sound.setBuffer(buffer);
           sound.setLoop(true);
           sound.setVolume(0.5);
+          sound.play(); //belum di add ke scene
       });
   }

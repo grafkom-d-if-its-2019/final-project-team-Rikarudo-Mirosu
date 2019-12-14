@@ -36,6 +36,7 @@ class musuh {
         this._speed = speed;
         this._delay = delay * 60;
         this._time = 0;
+        this._DeleteBasedOnY = true
     }
     VibeCheck() {
         scene.remove(this.object);
@@ -57,10 +58,24 @@ class musuh {
         }
         return false;
     }
+    checkOutOfBound() {
+        if (this.object.position.x >= 30 || this.object.position.x <= -30) {
+            return false;
+        }
+        if (this.object.position.y >= 12 && this._DeleteBasedOnY) {
+            return false;
+        }
+        return true;
+    }
     set x(x) {
         this._x = x;
     }
-
+    set DeleteBasedOnY(x) {
+        this._DeleteBasedOnY = x
+    }
+    get DeleteBasedOnY() {
+        return this._DeleteBasedOnY
+    }
     set time(x) {
         this._time += x;
     }
@@ -91,17 +106,25 @@ class musuh {
 
 
 class Minions extends musuh {
-    constructor(x, y, speed, delay) {
+    constructor(x, y, speed, delay, outOrientation) {
         super(6, 12, speed, delay);
+        this._back = true
+        this.outOrientation = outOrientation
     }
     shootPeebles() {
 
     }
+    set back(x) {
+        this._back = x
+    }
+    get back() {
+        return this._back
+    }
 }
 
 class MinionsUptoDown extends Minions {
-    constructor(x, y, speed, xboundary, yboundary, delay) {
-        super(6, 12, speed, delay);
+    constructor(x, y, speed, xboundary, yboundary, delay, outOrientation) {
+        super(6, 12, speed, delay, outOrientation);
         this._object = Spawn(x, y);
         this.xboundary = xboundary
         this.yboundary = yboundary
@@ -109,22 +132,23 @@ class MinionsUptoDown extends Minions {
         scene.add(this._object);
     }
     move() {
-        if (this.object.position.y >= this.yboundary)
+        if (this.object.position.y >= this.yboundary && this._back)
             this.object.translateY(-1 * this.speed);
         else {
             if (this.isNotDelayed()) {
-                if (this.object.position.x >= 0)
-                    this.object.translateX(this.speed)
-                else
-                    this.object.translateX(this.speed * -1)
+                this._back = false
+                if (this.outOrientation == 0) this.object.translateX(-1 * this.speed); //kiri
+                if (this.outOrientation == 1) this.object.translateY(-1 * this.speed); //bawah
+                if (this.outOrientation == 2) this.object.translateX(1 * this.speed); //kanan
+                if (this.outOrientation == 3) this.object.translateY(1 * this.speed); //atas
             }
         }
 
     }
 }
 class MinionsRighttoLeft extends Minions {
-    constructor(x, y, speed, xboundary, yboundary, delay) {
-        super(6, 12, speed, delay);
+    constructor(x, y, speed, xboundary, yboundary, delay, outOrientation) {
+        super(6, 12, speed, delay, outOrientation);
         this._object = Spawn(x, y);
         this.xboundary = xboundary
         this.yboundary = yboundary
@@ -132,18 +156,24 @@ class MinionsRighttoLeft extends Minions {
         scene.add(this._object);
     }
     move() {
-        if (this.object.position.x >= this.xboundary) this.object.translateX(-1 * this.speed);
+        if (this.object.position.x >= this.xboundary && this._back) this.object.translateX(-1 * this.speed);
         else {
             if (this.isNotDelayed()) {
-                this.object.translateX(-1 * this.speed);
+                this._back = false
+                if (this.outOrientation == 0) this.object.translateX(-1 * this.speed); //kanan
+                if (this.outOrientation == 1) this.object.translateY(-1 * this.speed); //kiri
+                if (this.outOrientation == 2) this.object.translateX(1 * this.speed); //kanan
+                if (this.outOrientation == 3) this.object.translateY(1 * this.speed); //atas
             }
         }
     }
 }
+
+
 
 class MinionsLefttoRight extends Minions {
-    constructor(x, y, speed, xboundary, yboundary, delay) {
-        super(6, 12, speed, delay);
+    constructor(x, y, speed, xboundary, yboundary, delay, outOrientation) {
+        super(6, 12, speed, delay, outOrientation);
         this._object = Spawn(x, y);
         this.xboundary = xboundary
         this.yboundary = yboundary
@@ -151,50 +181,27 @@ class MinionsLefttoRight extends Minions {
         scene.add(this._object);
     }
     move() {
-        if (this.object.position.x <= this.xboundary) this.object.translateX(1 * this.speed);
+        if (this.object.position.x <= this.xboundary && this._back) this.object.translateX(1 * this.speed);
         else {
             if (this.isNotDelayed()) {
-                this.object.translateX(1 * this.speed);
+                this._back = false
+                if (this.outOrientation == 0) this.object.translateX(-1 * this.speed); //kiri
+                if (this.outOrientation == 1) this.object.translateY(-1 * this.speed); //bawah
+                if (this.outOrientation == 2) this.object.translateX(1 * this.speed); //kanan
+                if (this.outOrientation == 3) this.object.translateY(1 * this.speed); //atas
             }
         }
     }
 }
 
 
-class MinionsxPower extends Minions {
-    constructor(x, speed, translation, range, xboundary, delay) {
-        super(6, 12, speed, delay);
-        this._object = Spawn(x, 24);
-        this.translation = translation;
-        this.range = range
-        this.xboundary = xboundary
-        enemy.push(this);
-        scene.add(this._object);
-    }
-    move() {
-        if (this.object.position.x <= this.xboundary) {
-            var coordinate = this.object.position.x + this.speed
-                //x = 10y^1/2
-            this.object.position.x = coordinate;
-            this.object.position.y = Math.pow(coordinate - this.translation, 2) / this.range
-        } else {
-            if (this.isNotDelayed()) {
-                var coordinate = this.object.position.x + this.speed
-                    //x = 10y^1/2
-                this.object.position.x = coordinate;
-                this.object.position.y = Math.pow(coordinate - this.translation, 2) / this.range
-            }
-        }
-
-    }
-}
 
 
 class MinionsxLogLeft extends Minions {
-    constructor(head, x, lebar, speed, translation, accelerate, xboundary, delay) {
-        super(6, 12, speed, delay);
+    constructor(head, x, lebar, speed, translation, accelerate, xboundary, delay, outOrientation) {
+        super(6, 12, speed, delay, outOrientation);
         this._object = Spawn(x, 12);
-
+        this._DeleteBasedOnY = false
         this.xboundary = xboundary
         this.translation = translation;
         this.head = head
@@ -204,8 +211,7 @@ class MinionsxLogLeft extends Minions {
         scene.add(this._object);
     }
     move() {
-        if (this.object.position.x <= this.xboundary) {
-
+        if (this.object.position.x <= this.xboundary && this._back) {
             var coordinate = this.object.position.x + this.speed
                 //y = head * log(x + translation)
             this.object.position.x = coordinate;
@@ -214,12 +220,20 @@ class MinionsxLogLeft extends Minions {
 
         } else {
             if (this.isNotDelayed()) {
+                this._back = false
 
-                var coordinate = this.object.position.x + this.speed
-                    //y = head * log(x + translation)
-                this.object.position.x = coordinate;
-                this.object.position.y = -1 * this.head * Math.log2((this.lebar * coordinate) - this.translation) + 10
-                this.accelerates()
+                this._DeleteBasedOnY = true
+                if (this.outOrientation == 0) this.object.translateX(-1 * this.speed); //kiri
+                else if (this.outOrientation == 1) this.object.translateY(-1 * this.speed); //bawah
+                else if (this.outOrientation == 2) this.object.translateX(1 * this.speed); //kanan
+                else if (this.outOrientation == 3) this.object.translateY(1 * this.speed); //atas
+                else if (this.outOrientation == 4) {
+                    var coordinate = this.object.position.x + this.speed
+                        //y = head * log(x + translation)
+                    this.object.position.x = coordinate;
+                    this.object.position.y = -1 * this.head * Math.log2((this.lebar * coordinate) - this.translation) + 10
+                    this.accelerates()
+                }
             }
 
         }
@@ -230,9 +244,11 @@ class MinionsxLogLeft extends Minions {
 }
 
 class MinionsxLogRight extends Minions {
-    constructor(head, x, lebar, speed, translation, accelerate, xboundary, delay) {
-        super(6, 12, speed, delay);
+    constructor(head, x, lebar, speed, translation, accelerate, xboundary, delay, outOrientation) {
+        super(6, 12, speed, delay, outOrientation);
         this._object = Spawn(x, 12);
+
+        this._DeleteBasedOnY = false
         this.translation = translation;
         this.head = head
         this.lebar = lebar
@@ -242,7 +258,7 @@ class MinionsxLogRight extends Minions {
         scene.add(this._object);
     }
     move() {
-        if (this.object.position.x >= this.xboundary) {
+        if (this.object.position.x >= this.xboundary && this._back) {
             var coordinate = this.object.position.x - this.speed
                 //y = head * log(x + translation)
             this.object.position.x = coordinate;
@@ -250,11 +266,22 @@ class MinionsxLogRight extends Minions {
             this.accelerates()
         } else {
             if (this.isNotDelayed()) {
-                var coordinate = this.object.position.x - this.speed
-                    //y = head * log(x + translation)
-                this.object.position.x = coordinate;
-                this.object.position.y = -1 * this.head * Math.log2(-1 * ((this.lebar * coordinate) - this.translation)) + 10
-                this.accelerates()
+                this._back = false
+
+
+                this._DeleteBasedOnY = true
+                if (this.outOrientation == 0) this.object.translateX(-1 * this.speed); //kiri
+                else if (this.outOrientation == 1) this.object.translateY(-1 * this.speed); //bawah
+                else if (this.outOrientation == 2) this.object.translateX(1 * this.speed); //kanan
+                else if (this.outOrientation == 3) this.object.translateY(1 * this.speed); //atas
+                else {
+                    var coordinate = this.object.position.x - this.speed
+                        //y = head * log(x + translation)
+                    this.object.position.x = coordinate;
+                    this.object.position.y = -1 * this.head * Math.log2(-1 * ((this.lebar * coordinate) - this.translation)) + 10
+                    this.accelerates()
+                }
+
             }
         }
     }
@@ -283,6 +310,11 @@ function moveEnemy() {
     var k = 0;
     for (k = 0; k < enemy.length; k++) {
         enemy[k].move();
+        if (!enemy[k].checkOutOfBound()) {
+            enemy[k].VibeCheck();
+            enemy.splice(k, 1);
+
+        }
     }
 }
 
@@ -317,13 +349,38 @@ function getRandom() {
 
 function enemySpawner() { //test object
     if (time <= 1) {
-        //new MinionsUptoDown(getRandom() % 10, 10, 0.03, 6, -2, 3) // x , y, speed , xboundary,y boundary,delay
-        //new MinionsxPower(25, 10, 0.08, -10, 50, 0)
-        //new MinionsxPower(-5, 0.08, 15, 50, 0, 2) //x coordinate,  speed, x translation, Lebar lingkaran, xboundary,delay
-        // new MinionsxLogLeft(3, -6, 1, 0.01, -6, 0.0001, 3, 2) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay
-        // new MinionsxLogRight(3, 3, 1, 0.01, 3, 0.0001, -3, 2)
-        //new MinionsUptoDown(getRandom() % 10, 10, 0.09, 6, 1, 1) // x , y, speed , x boundary, y boundary,delay
-        new MinionsRighttoLeft(20, 1, 0.09, 6, 3, 1) // x , y, speed , x boundary, y boundary,delay
-        new MinionsLefttoRight(-20, 1, 0.09, 2, 3, 1) // x , y, speed , x boundary, y boundary,delay
+
+        new MinionsUptoDown(getRandom() % 10, 15, 0.09, 6, 1, 1, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, 15, 0.09, 6, 1, 1, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, 15, 0.09, 6, 1, 1, 2) // x , y, speed , x boundary, y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, 15, 0.09, 6, 1, 1, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+
+        new MinionsxLogLeft(3, -6, 1, 0.1, -6, 0.0001, 3, 2, 3) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation
+        new MinionsxLogLeft(3, -6, 1, 0.1, -6, 0.0001, 3, 2, 1) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation
+        new MinionsxLogLeft(3, -6, 1, 0.1, -6, 0.0001, 3, 2, 2) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation
+        new MinionsxLogLeft(3, -6, 1, 0.1, -6, 0.0001, 3, 2, 0) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation
+        new MinionsxLogLeft(3, -6, 1, 0.1, -6, 0.0001, 3, 2, 4) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation
+
+        new MinionsxLogRight(3, 3, 1, 0.1, 3, 0.0001, 0, 2, 2) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation
+        new MinionsxLogRight(3, 3, 1, 0.1, 3, 0.0001, 0, 2, 1) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation
+        new MinionsxLogRight(3, 3, 1, 0.1, 3, 0.0001, 0, 2, 0) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation
+        new MinionsxLogRight(3, 3, 1, 0.1, 3, 0.0001, 0, 2, 3) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation
+        new MinionsxLogRight(3, 3, 1, 0.1, 3, 0.0001, 0, 2, 4) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation
+
+        new MinionsLefttoRight(-30, 1, 0.09, 2, 3, 1, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+        new MinionsLefttoRight(-30, 1, 0.09, 2, 3, 1, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+        new MinionsLefttoRight(-30, 1, 0.09, 2, 3, 1, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+        new MinionsLefttoRight(-30, 1, 0.09, 2, 3, 1, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+
+        new MinionsRighttoLeft(30, 1, 0.09, 2, 3, 1, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+        new MinionsRighttoLeft(30, 1, 0.09, 2, 3, 1, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+        new MinionsRighttoLeft(30, 1, 0.09, 2, 3, 1, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+        new MinionsRighttoLeft(30, 1, 0.09, 2, 3, 1, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
     }
 }
+
+// if (this.outOrientation == 0) this.object.translateX(-1 * this.speed); //kiri
+// if (this.outOrientation == 1) this.object.translateY(-1 * this.speed); //bawah
+// if (this.outOrientation == 2) this.object.translateX(1 * this.speed); //kanan
+// if (this.outOrientation == 3) this.object.translateY(1 * this.speed); //atas
+// if (this.outOrientation == 4) ikuti pola
