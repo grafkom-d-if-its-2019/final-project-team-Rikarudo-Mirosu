@@ -18,10 +18,29 @@ class Player {
     get object() {
         return this._object; //untuk get object, cara ngaksesnya cukup (instansi).object
     }
+
     PlayerHit() {
         console.log("Player Life!", this.life);
-        this.life -= 10;
+        // this.life -= 10;
         if (this.life <= 0) this.VibeCheck();
+        scene.remove(this._object)
+        deathTime = time
+        alive = false
+        // setTimeout(this.PlayerRespawn(), 5000)
+    }
+
+    PlayerRespawn(){
+
+        this.life -= 10;
+
+        this._object.position.x = 0;
+        this._object.position.y = -6;
+        this._object.position.z = 6;
+        
+        if(time-3 == deathTime)
+        {
+            scene.add(this._object)
+        }
     }
 
     VibeCheck() {

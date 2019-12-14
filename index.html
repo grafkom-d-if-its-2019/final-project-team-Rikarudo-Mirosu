@@ -23,8 +23,16 @@
     <script src="build/HitBox.js"></script>
     <script src="build/player.js"></script>
     <script src="build/music.js"></script>
+    <script src="build/overlay.js"></script>
     <script>
         // bagian inisiasi objek
+
+        // var canvas = document.querySelector("canvas");
+
+        // window.addEventListener("resize", function(){
+        // canvas.setAttribute("width", window.innerWidth);
+        // canvas.setAttribute("height", window.innerHeight)
+        // })
 
         var bullets = [];
         var enemy = [];
@@ -94,6 +102,8 @@
         // var data = new Minions();
         // var data2 = new Boss();
 
+        Overlay();
+
         function playerCoordinateCheck() {
 
             // ngecek kordinat dari player, apakah keluar terrain atau ngga.
@@ -127,14 +137,12 @@
         function move() {
 
             player1.object.position.y += yMovement;
-            // if(player1.object.position.x >= plane_limitx){
-
-            //     player1.object.position.x = plane_limitx-0.001;
-            // }
-            // else 
             player1.object.position.x += xMovement;
         }
 
+
+        var deathTime = 0;
+        var alive = true;
         setTimeout(animate, 2000);
 
         function animate() {
@@ -153,6 +161,7 @@
                 time++;
                 enemySpawner();
                 frame = 0;
+                if(!alive) player1.PlayerRespawn()
             }
             //oh, perlu diketahui, apabila ingin membuat kelas dan ingin mengatur posisinya,
             // harus objek dari kelasnya yang di rombak
