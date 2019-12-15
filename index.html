@@ -128,11 +128,11 @@
         dieSplash.style.color = 'white';
         dieSplash.style.position = 'absolute';
         dieSplash.style.top = '220px';
-        dieSplash.style.right = '200px';
+        dieSplash.style.right = '30%';
 
         document.body.appendChild(div);
         document.body.appendChild(div2);
-        //document.body.appendChild(dieSplash);
+        document.body.appendChild(dieSplash);
 
         var planeTexture = new THREE.ImageUtils.loadTexture('grass.jpg'); //256x256
         planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
