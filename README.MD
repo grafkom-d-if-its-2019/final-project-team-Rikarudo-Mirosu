@@ -20,3 +20,6 @@ https://docs.google.com/presentation/d/1iuHXLqilcWpaNV5-3mlo5djqswdu9Rodf5fuhaZe
 ### BASIC MOVEMENT :
 1. WASD - Movement
 2. K - Shoot
+3. Z - Play
+4. esc - Exit
+5. m - main menu
