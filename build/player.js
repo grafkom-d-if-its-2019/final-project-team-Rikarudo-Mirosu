@@ -10,7 +10,8 @@ class Player {
         player.position.y = -6;
         player.position.z = 6;
         this._object = player; //ini khusus untuk javascript, atribut ini diangkap sebuah atribut object yang memiliki fungsi get / set
-        this.life = 100; //inisiasi life sebesar 100, dengan anggap pakai sistem health point
+        this.life = 30; //inisiasi life sebesar 100, dengan anggap pakai sistem health point
+        this.isHittable = true;
         scene.add(player);
         //perlu diingat this adalah instansi dengan kelas Player, bukan object, jadi untuk akses objectnya, pakai (kelas).object
     }
@@ -20,26 +21,32 @@ class Player {
     }
 
     PlayerHit() {
-        console.log("Player Life!", this.life);
-        // this.life -= 10;
-        if (this.life <= 0) this.VibeCheck();
-        scene.remove(this._object)
-        deathTime = time
-        alive = false
+
+        if(this.isHittable == true){
+            
+            this.isHittable = false
+            console.log("Player Life!", this.life);
+            // this.life -= 10;
+            if (this.life <= 0) this.VibeCheck();
+            scene.remove(this._object)
+
+            deathTime = time
+            alive = false
+        }
         // setTimeout(this.PlayerRespawn(), 5000)
     }
 
     PlayerRespawn(){
-
-        this.life -= 10;
-
-        this._object.position.x = 0;
-        this._object.position.y = -6;
-        this._object.position.z = 6;
-        
-
+    
         if(time-3 >= deathTime && time-3 - deathTime<0.9)
         {
+
+            this.life -= 10;
+            this.isHittable = true
+            this._object.position.x = 0;
+            this._object.position.y = -6;
+            this._object.position.z = 6;
+            
             console.log("idup lagi")
             alive = true
             scene.add(this._object)

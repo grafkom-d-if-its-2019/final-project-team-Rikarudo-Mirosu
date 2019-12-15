@@ -139,7 +139,8 @@
         overlay.position.x = plane_limitx;
         overlay.position.y = -plane_limity;
         overlay.position.z = 6;
-        overlay.quaternion.copy( camera. quaternion );
+        overlay.lookAt( 0, 0, 20 )
+        // overlay.quaternion.copy( camera. quaternion );
         scene.add(overlay)
 
         var planeTexture = new THREE.ImageUtils.loadTexture( 'grass.jpg' ); //256x256
