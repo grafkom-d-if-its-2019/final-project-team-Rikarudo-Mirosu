@@ -25,7 +25,7 @@ class Player {
         if(this.isHittable == true){
             
             this.isHittable = false
-            console.log("Player Life!", this.life);
+            console.log("Player Life!", this.life, this.isHittable);
             // this.life -= 10;
             if (this.life <= 0) this.VibeCheck();
             scene.remove(this._object)
@@ -53,31 +53,35 @@ class Player {
         }
     }
 
+    // PlayerHitableStatus(){
+    //     return this.isHittable
+    // }
+
     VibeCheck() {
         console.log("Game Over");
         // stop();
     }
     
-    action() {
-        if (LEFT) {
-            xMovement = -0.2;
-        }
-        if (RIGHT) {
-            xMovement = 0.2;
-        }
-        if (TOP) {
-            yMovement = 0.2;
-        }
-        if (BOTTOM) {
-            yMovement = -0.2;
-        }
-        if (SHOOT) {
-            if (delayshoot > 3) {
-                spawnshoot();
-                delayshoot = 0;
-            }
-        }
-    }
+    // action() {
+    //     if (LEFT) {
+    //         xMovement = -0.2;
+    //     }
+    //     if (RIGHT) {
+    //         xMovement = 0.2;
+    //     }
+    //     if (TOP) {
+    //         yMovement = 0.2;
+    //     }
+    //     if (BOTTOM) {
+    //         yMovement = -0.2;
+    //     }
+    //     if (SHOOT) {
+    //         if (delayshoot > 3) {
+    //             spawnshoot();
+    //             delayshoot = 0;
+    //         }
+    //     }
+    // }
 }
 // kalau di action, shoot diaktifin dan addEventListener, shoot dinonaktifin, tembakannya
 // bakal berjeda. ga full auto. vice versa
@@ -109,7 +113,7 @@ document.onkeydown = function(e) {
     if (e.keyCode == 68) RIGHT = true;
     if (e.keyCode == 87) TOP = true;
     if (e.keyCode == 83) BOTTOM = true;
-    if (e.keyCode == 75) SHOOT = true;
+    if (e.keyCode == 75 && alive) SHOOT = true;
 }
 
 document.onkeyup = function(e) {
