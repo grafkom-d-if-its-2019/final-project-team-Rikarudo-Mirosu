@@ -32,9 +32,7 @@
         //raycast and mouse
         var raycaster = new THREE.Raycaster();
         var mouse = new THREE.Vector2();
-      
-
-
+        
         function onMouseMove(event) {
 
         // calculate mouse position in normalized device coordinates
@@ -197,23 +195,32 @@ scene.add( light );
         var sound = new THREE.Audio( listener );
 
         // load a sound and set it as the Audio object's buffer
-        var audioLoader = new THREE.AudioLoader();
-        
-        
-        
+        var audioLoader = new THREE.AudioLoader();  
+        audioLoader.load( 'music/With_The_Wind.mp3', function( buffer ) {
+                sound.setBuffer( buffer );
+                sound.setVolume(0.5);
+                sound.play();
+        });
+
         document.addEventListener("keydown", onDocumentKeyDown, false);
         function onDocumentKeyDown(event) {
             var keyCode = event.which;
             if (keyCode == 90) {//z
+                
+                audioLoader.load( 'music/Button_Back_Sound.ogg', function( buffer ) {
+                    sound.setBuffer( buffer );
+                    sound.setVolume(0.5);
+                    sound.play();
+                 });
                 window.open("http://localhost/final-project-team-Rikarudo-Mirosu/index.html","_self");
-                audioLoader.load( 'sounds/Button_Back_Sound.mp3', function( buffer ) {
-                sound.setBuffer( buffer );
-                sound.setLoop( true );
-                sound.setVolume( 50);
-                sound.play();
-        });
+                
             
             } else if (keyCode == 88) {//x
+                audioLoader.load( 'music/Button_Back_Sound.ogg', function( buffer ) {
+                    sound.setBuffer( buffer );
+                    sound.setVolume(0.5);
+                    sound.play();
+                });
                 window.open("http://localhost/final-project-team-Rikarudo-Mirosu/petunjuk.html","_self");
             } else if (keyCode == 27) {//esc
                 while(scene.children.length > 0){ 
@@ -238,7 +245,7 @@ scene.add( light );
             if(judul) judul.position.z = 4;
             if(judul) judul.position.x = -6;
             if(judul) judul.position.y = 2;
-
+            bp.rotation.y += 0.01;
             if(mmp) mmp.position.z = 4;
             if(mmp) mmp.position.y = -5;
             if(mmp) mmp.position.x= 0.8;
