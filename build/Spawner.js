@@ -40,6 +40,7 @@ class musuh {
     }
     VibeCheck() {
         scene.remove(this.object);
+        console.log("terhapus")
         delete this;
     }
     get object() {
@@ -62,7 +63,7 @@ class musuh {
         if (this.object.position.x >= 30 || this.object.position.x <= -30) {
             return false;
         }
-        if (this.object.position.y >= 12 && this._DeleteBasedOnY) {
+        if (this.object.position.y >= 15 && this._DeleteBasedOnY) {
             return false;
         }
         return true;
@@ -123,10 +124,9 @@ class Minions extends musuh {
 }
 
 class MinionsUptoDown extends Minions {
-    constructor(x, y, speed, xboundary, yboundary, delay, outOrientation) {
+    constructor(x, y, speed, yboundary, delay, outOrientation) {
         super(6, 12, speed, delay, outOrientation);
         this._object = Spawn(x, y);
-        this.xboundary = xboundary
         this.yboundary = yboundary
         enemy.push(this);
         scene.add(this._object);
