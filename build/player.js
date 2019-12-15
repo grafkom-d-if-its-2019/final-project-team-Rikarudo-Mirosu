@@ -29,6 +29,7 @@ class Player {
         if(this.isHittable == true){
             
             this.isHittable = false
+            playerExplosion();
             console.log("Player Life!", this.life, this.isHittable);
             // this.life -= 10;
             if (this.life <= 0) this.VibeCheck();
@@ -47,17 +48,21 @@ class Player {
     
         if(time-3 >= deathTime && time-3 - deathTime<0.9)
         {
-            
-            
+               
             this.life -= 10;
             this.isHittable = true
             this._object.position.x = 0;
             this._object.position.y = -6;
             this._object.position.z = 6;
             
-            console.log("idup lagi")
-            alive = true
-            scene.add(this._object)
+            if(this.life > 0){
+                console.log("idup lagi")
+                alive = true
+                scene.add(this._object)
+            }
+            else{
+                this.life = 0;
+            }
         }
     }
 

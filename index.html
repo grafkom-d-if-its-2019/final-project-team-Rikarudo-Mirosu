@@ -93,7 +93,7 @@
         camera.position.y = -5;
         camera.position.x = 0;
 
-        loadMusic()
+        loadMusic();
 
         var planewidth = 40;
         var planeheight = 69420;
@@ -107,6 +107,7 @@
         // angka += 1;
         var div = document.createElement('div');
         var div2 = document.createElement('div');
+        var dieSplash = document.createElement('div');
         
         div.textContent = angka;
         div.style.fontSize = '100px'
@@ -122,9 +123,16 @@
         div2.style.top = '90px';
         div2.style.left = '50px';
 
+        dieSplash.textContent = 'YOU LOSE';
+        dieSplash.style.fontSize = '100px'
+        dieSplash.style.color = 'white';
+        dieSplash.style.position = 'absolute';
+        dieSplash.style.top = '220px';
+        dieSplash.style.right = '200px';
+
         document.body.appendChild(div);
         document.body.appendChild(div2);
-
+        //document.body.appendChild(dieSplash);
 
         var planeTexture = new THREE.ImageUtils.loadTexture('grass.jpg'); //256x256
         planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
@@ -231,6 +239,9 @@
                 if (!alive) player1.PlayerRespawn()
                 div.textContent = angka;
                 div2.textContent = player1.life;
+                if (player1.life == 0 ){
+                    document.body.appendChild(dieSplash);
+                }
             }
             //oh, perlu diketahui, apabila ingin membuat kelas dan ingin mengatur posisinya,
             // harus objek dari kelasnya yang di rombak
