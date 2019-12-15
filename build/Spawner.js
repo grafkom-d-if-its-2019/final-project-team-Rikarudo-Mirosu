@@ -125,21 +125,22 @@ class musuh {
     get delay() {
         return this._delay
     }
-}
 
-
-class Minions extends musuh {
-    constructor(x, y, speed, delay, outOrientation, waitshot) {
-        super(45, 12, speed, delay, waitshot);
-        this._back = true
-        this.outOrientation = outOrientation
-    }
     shootPeebles() {
         if (this._shootAble && this.waitshot <= this._lifeTime / 60 && this._shotTime % 30 == 0) {
             spawnshootEnemy(this.object.position.x, this.object.position.y)
             this._shotTime = 0;
         }
         this._shotTime++;
+    }
+}
+
+
+class Minions extends musuh {
+    constructor(x, y, speed, delay, outOrientation, waitshot) {
+        super(21, 12, speed, delay, waitshot);
+        this._back = true
+        this.outOrientation = outOrientation
     }
     set back(x) {
         this._back = x
@@ -317,16 +318,13 @@ class MinionsxLogRight extends Minions {
 //new MinionsxLog(-11, 0, 10, 0.0005, -3, 0.0001) //head (-1 dari atas ke bawah),x,y,speed,translation,akselerasi
 class Boss extends musuh {
     constructor(x, y, speed) {
-        super(1000, 120, speed);
+        super(1500, 120, speed, 0, 0, 0);
         this._object = SpawnBoss(x, y);
         enemy.push(this);
         scene.add(this._object);
     }
-    shootPeebles() {
-
-    }
     move() {
-
+        bossBesar.object.position.x = player1.object.position.x
     }
 }
 
