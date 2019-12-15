@@ -90,9 +90,9 @@
         loadMusic()
     
         var planewidth = 40;
-        var planeheight = 30;
+        var planeheight = 69420;
         var plane_limitx = (planewidth - 12) / 2;
-        var plane_limity = (planeheight - 12 ) / 2;
+        var plane_limity = 9;
         
 	// 	// Materials
 	// var  NoiseGen, loader, scene, light, plane, plane_geometry, plane_material, camera;
@@ -164,6 +164,12 @@
         // var data = new Minions();
         // var data2 = new Boss();
 
+        function planeMovement(){
+
+            plane.position.y -= 0.07;
+
+        }
+
         Overlay();
 
         function playerCoordinateCheck() {
@@ -208,6 +214,7 @@
 
         function animate() {
             if (time == 0 && frame == 0) sound.play()
+            planeMovement();
             action();
             move();
             playerCoordinateCheck();
