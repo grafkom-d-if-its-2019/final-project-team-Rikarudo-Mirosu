@@ -206,11 +206,16 @@ scene.add( light );
                 sound.setBuffer( buffer );
                 sound.setVolume(0.5);
                 sound.play();
-        });
+                 });
                 window.open("http://localhost/final-project-team-Rikarudo-Mirosu/index.html","_self");
                 
             
             } else if (keyCode == 88) {//x
+                audioLoader.load( 'sounds/Button_Back_Sound.ogg', function( buffer ) {
+                sound.setBuffer( buffer );
+                sound.setVolume(0.5);
+                sound.play();
+                });
                 window.open("http://localhost/final-project-team-Rikarudo-Mirosu/petunjuk.html","_self");
             } else if (keyCode == 27) {//esc
                 while(scene.children.length > 0){ 
