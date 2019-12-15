@@ -20,6 +20,7 @@
     <!-- s<div id="info">Deskripsi</div> -->
 
     <script src="build/three.js"></script>
+    <script src="examples/js/loaders/GLTFLoader.js"></script>
     <script src="build/Spawner.js"></script>
     <script src="build/bullet.js"></script>
     <script src="build/HitBox.js"></script>
@@ -46,10 +47,9 @@
         var bulletEnemy = [];
         var frame = 0;
         var time = 0;
-       
-        
+
         //const Perlin = require('build/perlin.js').Perlin;
-      
+
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
@@ -104,11 +104,11 @@
         function lifeOverlay() {}
         var angka = 0;
         var lifepoint = player1.life
-        // angka += 1;
+            // angka += 1;
         var div = document.createElement('div');
         var div2 = document.createElement('div');
         var dieSplash = document.createElement('div');
-        
+
         div.textContent = angka;
         div.style.fontSize = '100px'
         div.style.color = 'white';
@@ -147,16 +147,19 @@
         plane.position.z = 0;
         scene.add(plane);
 
-        
+
         var peak = 60;
         var smoothing = 300;
+
         function refreshVertices() {
-        var vertices = plane.geometry.attributes.position.array;
-        
-    plane.geometry.attributes.position.needsUpdate = true;
-    plane.geometry.computeVertexNormals();
-}
-    
+            var vertices = plane.geometry.attributes.position.array;
+
+            plane.geometry.attributes.position.needsUpdate = true;
+            plane.geometry.computeVertexNormals();
+        }
+
+
+        var bossBesar = new Boss(0, 30);
         //penambahan camera because ofc
         scene.add(camera);
         camera.lookAt(plane.position);
@@ -234,7 +237,7 @@
                 if (!alive) player1.PlayerRespawn()
                 div.textContent = angka;
                 div2.textContent = player1.life;
-                if (player1.life == 0 ){
+                if (player1.life == 0) {
                     document.body.appendChild(dieSplash);
                 }
             }

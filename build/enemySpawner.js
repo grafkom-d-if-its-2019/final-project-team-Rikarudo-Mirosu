@@ -14,21 +14,21 @@ function getRandom() {
 }
 var counter = 0
 
-function enemySpawner() {
 
+function enemySpawner() {
     if (time <= 1.0) {
         if (time <= 0.2 && time > 0.1) {
-            new MinionsUptoDown(2, 14, 0.07, -1, 2, 1, 2).shootAble = true // x , y, speed , y boundary,delay,outOrientation,waitshot
-            new MinionsUptoDown(4, 14, 0.07, -1, 2, 1, 2).shootAble = true // x , y, speed , y boundary,delay,outOrientation,waitshot
-            new MinionsUptoDown(6, 14, 0.07, -1, 2, 1, 2).shootAble = true // x , y, speed , y boundary,delay,outOrientation,waitshot    
+            new MinionsUptoDown(2, 14, 0.07, 1, 2, 1, 3).shootAble = true // x , y, speed , y boundary,delay,outOrientation,waitshot
+            new MinionsUptoDown(4, 14, 0.07, 1, 2, 1, 3).shootAble = true // x , y, speed , y boundary,delay,outOrientation,waitshot
+            new MinionsUptoDown(6, 14, 0.07, 1, 2, 1, 3).shootAble = true // x , y, speed , y boundary,delay,outOrientation,waitshot    
         } else if (time <= 0.6 && time > 0.5) {
-            new MinionsUptoDown(-4, 14, 0.07, -1, 2, 1, 2).shootAble = true // x , y, speed , y boundary,delay,outOrientation,waitshot
-            new MinionsUptoDown(-2, 14, 0.07, -1, 2, 1, 2).shootAble = true // x , y, speed , y boundary,delay,outOrientation,waitshot
-            new MinionsUptoDown(0, 14, 0.07, -1, 2, 1, 2).shootAble = true // x , y, speed , y boundary,delay,outOrientation,waitshot
+            new MinionsUptoDown(-4, 14, 0.07, 1, 2, 1, 3).shootAble = true // x , y, speed , y boundary,delay,outOrientation,waitshot
+            new MinionsUptoDown(-2, 14, 0.07, 1, 2, 1, 3).shootAble = true // x , y, speed , y boundary,delay,outOrientation,waitshot
+            new MinionsUptoDown(0, 14, 0.07, 1, 2, 1, 3).shootAble = true // x , y, speed , y boundary,delay,outOrientation,waitshot
 
         } else if (time <= 0.7 && time > 0.6) {
-            new MinionsUptoDown(8, 14, 0.07, -1, 2, 1) // x , y, speed , y boundary,delay,outOrientation,waitshot
-            new MinionsUptoDown(-6, 14, 0.07, -1, 2, 1) // x , y, speed , y boundary,delay,outOrientation,waitshot
+            new MinionsUptoDown(8, 14, 0.07, 1, 1, 3) // x , y, speed , y boundary,delay,outOrientation,waitshot
+            new MinionsUptoDown(-6, 14, 0.07, 1, 1, 3) // x , y, speed , y boundary,delay,outOrientation,waitshot
 
         }
     } else if (time > 10 && time <= 11) {
@@ -185,96 +185,210 @@ function enemySpawner() {
         }
     } else if (time >= 53 && time < 60) {
         new MinionsUptoDown(getRandom() % 10, -14, -0.11, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation,waitshot
-    } else if (time >= 60 && time < 61) {
-        new Boss(0, 0)
-        console.log("summon")
-            //seranga boss if (1) {
-            // if (time <= 10.2 && time > 10.1) {
-            //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-            //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
-            //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
-            //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    } else if (time >= 70 && time < 83) {
+        bossBesar.object.translateY(-0.2)
+    } else if (time >= 85) {
+        if (bossBesar.health > 300) {
+            if (time <= 86.2 && time > 86.1) {
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
 
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+            }
+            if (time <= 87.2 && time > 87.1) {
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
 
-        // } else if (time <= 10.4 && time > 10.3) {
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+            }
+            if (time <= 88.2 && time > 88.1) {
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
 
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+            }
+            if (time <= 89.2 && time > 89.1) {
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
 
-        // } else if (time <= 10.6 && time > 10.5) {
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+            }
+            if (time <= 90.2 && time > 90.1) {
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
 
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation    
-        // } else if (time <= 10.8 && time > 10.7) {
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+            }
+            if (time <= 91.2 && time > 91.1) {
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsLefttoRight(-20, 1, 0.3, player1.object.position.x, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
 
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation    
-        // }
-        // if (time <= 11.2 && time > 11.1) {
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                new MinionsRighttoLeft(20, 1, 0.3, player1.object.position.x, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+            }
+        } else {
 
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+            bossBesar.shootAble = true
+            if (time <= 89.2 && time > 89.1) {
+                if (counter % 7 != 0) {
+                    new MinionsLefttoRight(-32, 2, 0.2, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientation,waitshot
+                    new MinionsRighttoLeft(32, 2, 0.2, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation,waitshot
+                }
+                if (counter % 7 != 1) {
+                    new MinionsLefttoRight(-30, 0, 0.2, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientation,waitshot
+                    new MinionsRighttoLeft(30, 0, 0.2, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation,waitshot
+                }
+                if (counter % 7 != 2) {
+                    new MinionsLefttoRight(-28, -2, 0.2, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientation,waitshot
+                    new MinionsRighttoLeft(28, -2, 0.2, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation,waitshot
+                }
 
-        // } else if (time <= 11.4 && time > 11.3) {
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                if (counter % 7 != 3) {
 
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                    new MinionsLefttoRight(-26, -4, 0.2, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientation,waitshotS
+                    new MinionsRighttoLeft(26, -4, 0.2, 2, -3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation,waitshotS
+                }
 
-        // } else if (time <= 11.6 && time > 11.5) {
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                if (counter % 7 != 3) {
 
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation    
-        // } else if (time <= 11.8 && time > 11.7) {
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+                    new MinionsLefttoRight(-24, -6, 0.2, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientation,waitshot
+                    new MinionsRighttoLeft(24, -6, 0.2, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation,waitshot
+                }
+                if (counter % 7 != 4) {
 
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation  
+                    new MinionsLefttoRight(-22, -8, 0.2, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientation,waitshot
+                    new MinionsRighttoLeft(22, -8, 0.2, 2, -3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation,waitshot
+                }
+
+                if (counter % 7 != 4) {
+                    new MinionsLefttoRight(-20, -10, 0.2, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientation,waitshot
+                    new MinionsRighttoLeft(20, -10, 0.2, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation,waitshot
+                }
+                counter++
+            }
+        }
+
+        if (time >= 95) {
+            time = 85
+        }
+
     }
+    //seranga boss if (1) {
+    // if (time <= 10.2 && time > 10.1) {
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+
+    // } else if (time <= 10.4 && time > 10.3) {
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+
+    // } else if (time <= 10.6 && time > 10.5) {
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation    
+    // } else if (time <= 10.8 && time > 10.7) {
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation    
+    // }
+    // if (time <= 11.2 && time > 11.1) {
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+
+    // } else if (time <= 11.4 && time > 11.3) {
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+
+    // } else if (time <= 11.6 && time > 11.5) {
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation    
+    // } else if (time <= 11.8 && time > 11.7) {
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsLefttoRight(-20, 1, 0.1, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
+
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 3) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 1) // x , y, speed , x boundary, y boundary,delay,outOrientation
+    //     new MinionsRighttoLeft(20, 1, 0.1, -2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation  
+
 
     // if (time <= 1 && time > 0.9) {
     //     new MinionsxLogLeft(3, -5, 1, 0.01, 0, 0.0003, 6, 4, 0) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation

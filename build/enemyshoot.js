@@ -63,7 +63,7 @@ function bulletEnemyPlaneCheck() {
 
     for (var index = 0; index < bulletEnemy.length; index += 1) {
 
-        if (bulletEnemy[index].position.y >= plane_limity + 6) {
+        if (bulletEnemy[index].position.y <= plane_limity - 6) {
             //bulletEnemy.splice(index, 1);
             bulletEnemy[index].alive = false;
             continue;
