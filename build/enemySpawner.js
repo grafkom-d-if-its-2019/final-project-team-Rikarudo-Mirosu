@@ -19,7 +19,6 @@ function enemySpawner() {
     if (time <= 1.0 ) {
         if(time <=0.2 && time>0.1)
         {
-            time = 48
             new MinionsUptoDown(2, 14, 0.07, -1, 1, 1) // x , y, speed , y boundary,delay,outOrientation
             new MinionsUptoDown(4, 14, 0.07, -1, 1, 1) // x , y, speed , y boundary,delay,outOrientation
             new MinionsUptoDown(6, 14, 0.07, -1, 1, 1) // x , y, speed , y boundary,delay,outOrientation    
