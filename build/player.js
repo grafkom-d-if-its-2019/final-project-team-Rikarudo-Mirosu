@@ -53,10 +53,6 @@ class Player {
         }
     }
 
-    // PlayerHitableStatus(){
-    //     return this.isHittable
-    // }
-
     VibeCheck() {
         console.log("Game Over");
         // stop();
