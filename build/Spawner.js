@@ -16,7 +16,7 @@ function Spawn(x, y) { //tulung diisikan Geomtery dan material untuk minions
 function SpawnBoss(x, y) { //tulung diisikan Geomtery dan material untuk minions
     var geometry = new THREE.BoxGeometry(1, 1, 1);
     var material = new THREE.MeshBasicMaterial({
-        color: 0x0afff
+        color: 0xffff
     });
     var cubec = new THREE.Mesh(geometry, material);
     cubec.position.set(
@@ -40,7 +40,7 @@ class musuh {
     }
     VibeCheck() {
         scene.remove(this.object);
-        console.log("terhapus")
+        console.log("kok terhapus")
         delete this;
     }
     get object() {
@@ -60,10 +60,10 @@ class musuh {
         return false;
     }
     checkOutOfBound() {
-        if (this.object.position.x >= 45 || this.object.position.x <= -45) {
+        if (this.object.position.x >= 50 || this.object.position.x <= -50) {
             return false;
         }
-        if (this.object.position.y >= 15 || this.object.position.y<= -15 && this._DeleteBasedOnY) {
+        if (this.object.position.y >= 50 || this.object.position.y <= -50 && this._DeleteBasedOnY) {
             return false;
         }
         return true;
@@ -108,7 +108,7 @@ class musuh {
 
 class Minions extends musuh {
     constructor(x, y, speed, delay, outOrientation) {
-        super(6, 12, speed, delay);
+        super(45, 12, speed, delay);
         this._back = true
         this.outOrientation = outOrientation
     }
@@ -267,8 +267,6 @@ class MinionsxLogRight extends Minions {
         } else {
             if (this.isNotDelayed()) {
                 this._back = false
-
-
                 this._DeleteBasedOnY = true
                 if (this.outOrientation == 0) this.object.translateX(-1 * this.speed); //kiri
                 else if (this.outOrientation == 1) this.object.translateY(-1 * this.speed); //bawah
@@ -293,7 +291,7 @@ class MinionsxLogRight extends Minions {
 //new MinionsxLog(-11, 0, 10, 0.0005, -3, 0.0001) //head (-1 dari atas ke bawah),x,y,speed,translation,akselerasi
 class Boss extends musuh {
     constructor(x, y, speed) {
-        super(100, 120, speed);
+        super(1000, 120, speed);
         this._object = SpawnBoss(x, y);
         enemy.push(this);
         scene.add(this._object);
