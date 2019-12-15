@@ -207,10 +207,10 @@
             moveEnemy();
             moveBullet();
             frame++;
-            if (frame >= 60) {
-                time++;
+            if (frame >= 6){
                 enemySpawner();
-                frame = 0;
+                time += 0.1;
+                frame=0;
                 if(!alive) player1.PlayerRespawn()
             }
             //oh, perlu diketahui, apabila ingin membuat kelas dan ingin mengatur posisinya,
