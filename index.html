@@ -13,7 +13,6 @@
             width: 100%;
             height: 100%
         }
-
     </style>
 </head>
 
@@ -32,6 +31,7 @@
     <script src="build/overlay.js"></script>
     <script src="build/enemySpawner.js"></script>
     <script src="build/threex.dynamictexture.js"></script>
+    <script src="build/enemyshoot.js"></script>
     <script>
         // bagian inisiasi objek
 
@@ -51,8 +51,8 @@
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-        var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
-        scene.add( directionalLight );
+        var directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+        scene.add(directionalLight);
         var spotLight = new THREE.SpotLight(0xffffff);
         spotLight.position.set(10, 100, 10);
         scene.add(spotLight);
@@ -86,20 +86,20 @@
         //ini buat bikin camera
 
         camera.position.z = 20 //mode normal;
-        // camera.position.z = 50 //mode mata elang;
+            // camera.position.z = 50 //mode mata elang;
 
         camera.position.y = -5;
         camera.position.x = 0;
 
         loadMusic()
-    
+
         var planewidth = 40;
         var planeheight = 69420;
         var plane_limitx = (planewidth - 12) / 2;
         var plane_limity = 9;
-        
+
         // unused Material 2
-        function lifeOverlay(){}
+        function lifeOverlay() {}
         var angka = 0;
         // angka += 1;
         var div = document.createElement('div');
@@ -112,16 +112,19 @@
 
         document.body.appendChild(div);
 
-        var planeTexture = new THREE.ImageUtils.loadTexture( 'grass.jpg' ); //256x256
-        planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping; 
-        planeTexture.repeat.set( 10, 10 );
-        var planeMaterial = new THREE.MeshBasicMaterial( { map: planeTexture, side: THREE.DoubleSide } );
+        var planeTexture = new THREE.ImageUtils.loadTexture('grass.jpg'); //256x256
+        planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
+        planeTexture.repeat.set(10, 10);
+        var planeMaterial = new THREE.MeshBasicMaterial({
+            map: planeTexture,
+            side: THREE.DoubleSide
+        });
         var planeGeometry = new THREE.PlaneGeometry(planewidth, planeheight, 1, 1);
         var plane = new THREE.Mesh(planeGeometry, planeMaterial);
         plane.receiveShadow = true;
         plane.position.z = 0;
         scene.add(plane);
-    
+
         //penambahan camera because ofc
         scene.add(camera);
         camera.lookAt(plane.position);
@@ -130,7 +133,7 @@
         // var data = new Minions();
         // var data2 = new Boss();
 
-        function planeMovement(){
+        function planeMovement() {
 
             plane.position.y -= 0.07;
 
@@ -146,23 +149,23 @@
             // yang ini baru sebatas buat kamera normal, bakal
             // keliatan sempit kalo pakai kamera elang
 
-            if (player1.object.position.x >= plane_limitx) {            
-                    player1.object.position.x = plane_limitx - 0.01;
-            
+            if (player1.object.position.x >= plane_limitx) {
+                player1.object.position.x = plane_limitx - 0.01;
+
             }
             if (player1.object.position.x <= -plane_limitx) {
-                    player1.object.position.x = -plane_limitx + 0.01;
-            
+                player1.object.position.x = -plane_limitx + 0.01;
+
             }
             if (player1.object.position.y >= plane_limity) {
-                    player1.object.position.y = plane_limity - 0.01;
+                player1.object.position.y = plane_limity - 0.01;
             }
             // if (player1.object.position.y <= -plane_limity) {
             //         player1.object.position.y = -plane_limity + 0.01;
             // }
 
             if (player1.object.position.y <= -(plane_limity + 1)) {
-                    player1.object.position.y = -(plane_limity + 1) + 0.01;
+                player1.object.position.y = -(plane_limity + 1) + 0.01;
             }
             // player.position.x = 0;
             // player.position.y = -3;
@@ -189,14 +192,14 @@
             bulletPlaneCheck();
             bulletAliveCheck();
             moveEnemy();
-            moveBullet();
+            shootEnemy();
             frame++;
-            if (frame >= 6){
-                if(alive) 
-                enemySpawner();
+            if (frame >= 6) {
+                if (alive)
+                    enemySpawner();
                 time += 0.1;
-                frame=0;
-                if(!alive) player1.PlayerRespawn()
+                frame = 0;
+                if (!alive) player1.PlayerRespawn()
                 div.textContent = angka;
             }
             //oh, perlu diketahui, apabila ingin membuat kelas dan ingin mengatur posisinya,

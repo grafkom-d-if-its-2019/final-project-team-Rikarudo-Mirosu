@@ -1,12 +1,11 @@
         function spawnshoot() {
-
             var bullet = new THREE.Mesh(
                 new THREE.SphereGeometry(0.1, 0.1),
                 new THREE.MeshBasicMaterial({
                     color: 0xffffff
                 })
             );
-            bullet.velocity = new THREE.Vector3(0, 0.3, 0);
+            bullet.velocity = new THREE.Vector3(0, 0.2, 0);
 
             // bullet yang dispawn akan berada dalam pesawat
             bullet.position.set(
@@ -29,7 +28,7 @@
             bullets.push(bullet);
             scene.add(bullet);
         }
-        
+
         function shoot() {
             // loop untuk bergerakan bullet yang telah dispawn
             for (var index = 0; index < bullets.length; index += 1) {
@@ -47,7 +46,7 @@
         }
 
         function bulletAliveCheck() {
-            
+
             for (var index = 0; index < bullets.length; index += 1) {
                 // kalao ternyata bulletnya belum dibikin sama sekali, ya skip
                 if (bullets[index] === undefined) continue;
@@ -64,7 +63,7 @@
         function bulletPlaneCheck() {
 
             for (var index = 0; index < bullets.length; index += 1) {
-                
+
                 if (bullets[index].position.y >= plane_limity + 6) {
                     //bullets.splice(index, 1);
                     bullets[index].alive = false;
