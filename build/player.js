@@ -19,7 +19,11 @@ class Player {
     get object() {
         return this._object; //untuk get object, cara ngaksesnya cukup (instansi).object
     }
-
+    
+    PlayerHealthNow(){
+        return this.life;
+    }
+    
     PlayerHit() {
 
         if(this.isHittable == true){

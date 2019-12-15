@@ -13,10 +13,13 @@
             width: 100%;
             height: 100%
         }
+
     </style>
 </head>
 
 <body>
+    <!-- s<div id="info">Deskripsi</div> -->
+
     <script src="build/three.js"></script>
     <script src="build/Spawner.js"></script>
     <script src="build/bullet.js"></script>
@@ -28,6 +31,7 @@
     <script src="build/perlin.js"></script>
     <script src="build/overlay.js"></script>
     <script src="build/enemySpawner.js"></script>
+    <script src="build/threex.dynamictexture.js"></script>
     <script>
         // bagian inisiasi objek
 
@@ -127,24 +131,51 @@
 	// 	plane.position.z = 0;
 	// 	scene.add( plane );
 
-        var overlayGeometry = new THREE.PlaneGeometry(9, 5, 1, 1); 
-        var overlayMaterial = new THREE.MeshBasicMaterial({ color: 0xFFFFFF, transparent: true, opacity: 0.2 });
-        var overlay = new THREE.Mesh( overlayGeometry, overlayMaterial );
+        // var updateFacts = []
+
+        // var overlayTexture	= new THREEx.DynamicTexture(512,512);
+        // overlayTexture.texture.needsUpdate = true;
+        // overlayTexture.context.font = "bolder 10px Verdana";
+        // overlayTexture.texture.anisotropy = renderer.capabilities.getMaxAnisotropy()
+        // updateFacts.push(function(delta, now){
+
+        //     var healthNow = player1.object.PlayerHealthNow
+            
+        // // update
+        // overlayTexture.clear(0xFFFFFF)
+        // overlayTexture.drawText(healthNow, undefined, 256, 0xFFFFFF)
+
+        // })
+
+
+
+        // var overlayGeometry = new THREE.PlaneGeometry(9, 5, 1, 1); 
+        // // var overlayMaterial = new THREE.MeshBasicMaterial({ color: 0xFFFFFF, transparent: true, opacity: 0.2 });
+        // var overlayMaterial = new THREE.MeshBasicMaterial({ map: overlayTexture.texture });
+
+        // var overlay = new THREE.Mesh( overlayGeometry, overlayMaterial );
 
         // var quarternion = new THREE.Quarternion();
         // quarternion.setFromAxisAngle( new THREE.Vector3( 0,1,0 ), Math.PI / 2);
-        var quarternion = new THREE.Quaternion();
-        overlay.applyQuaternion(quarternion)
+        // var quarternion = new THREE.Quaternion();
+        // overlay.applyQuaternion(quarternion)
 
-        overlay.position.x = plane_limitx;
-        overlay.position.y = -plane_limity - 1;
-        overlay.position.z = 0.1;
+
+        // overlay.position.x = plane_limitx;
+        // overlay.position.y = -plane_limity - 1;
+        // overlay.position.z = 0.1;
         //overlay.lookAt( 0, -5, 20 )
         // overlay.lookAt(camera.position)
         // overlay.quaternion.copy( camera. quaternion );
         //helper = new THREE.FaceNormalsHelper( overlay, 5, 0x00ff00, 3 );
-        scene.add(overlay)
+        // scene.add(overlay)
         //scene.add(helper)
+
+        var div = document.createElement('div');
+        div.textContent = 'testing 101';
+        //div.style.color = 'white';
+        div.style.top = '50px';
+        document.body.appendChild(div);
 
         var planeTexture = new THREE.ImageUtils.loadTexture( 'grass.jpg' ); //256x256
         planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping; 
@@ -243,5 +274,7 @@
         }
     </script>
 </body>
+
+
 
 </html>

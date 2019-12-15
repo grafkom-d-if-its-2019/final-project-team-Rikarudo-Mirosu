@@ -3,6 +3,8 @@ function Overlay(){
 
         var loader = new THREE.FontLoader();
         
+
+        var font2 = loader.parse('fonts/helvetiker_regular.typeface.json')
         var font = loader.load( 'fonts/helvetiker_regular.typeface.json', function ( font ) {
 
         var geometry = new THREE.TextGeometry( 'BOTTOM TEXT', {
@@ -17,6 +19,9 @@ function Overlay(){
             bevelSegments: 5
 
             } );
+
+            var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 });
+            var text = new THREE.Mesh( font, material );
 
         } );
 
