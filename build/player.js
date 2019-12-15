@@ -47,7 +47,8 @@ class Player {
     
         if(time-3 >= deathTime && time-3 - deathTime<0.9)
         {
-
+            
+            
             this.life -= 10;
             this.isHittable = true
             this._object.position.x = 0;
