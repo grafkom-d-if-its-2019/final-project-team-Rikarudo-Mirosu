@@ -101,8 +101,11 @@
         // unused Material 2
         function lifeOverlay() {}
         var angka = 0;
+        var lifepoint = player1.life
         // angka += 1;
         var div = document.createElement('div');
+        var div2 = document.createElement('div');
+        
         div.textContent = angka;
         div.style.fontSize = '100px'
         div.style.color = 'white';
@@ -110,7 +113,16 @@
         div.style.top = '90px';
         div.style.right = '90px';
 
+        div2.textContent = lifepoint;
+        div2.style.fontSize = '100px'
+        div2.style.color = 'white';
+        div2.style.position = 'absolute';
+        div2.style.top = '90px';
+        div2.style.left = '50px';
+
         document.body.appendChild(div);
+        document.body.appendChild(div2);
+
 
         var planeTexture = new THREE.ImageUtils.loadTexture('grass.jpg'); //256x256
         planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
@@ -201,6 +213,7 @@
                 frame = 0;
                 if (!alive) player1.PlayerRespawn()
                 div.textContent = angka;
+                div2.textContent = player1.life;
             }
             //oh, perlu diketahui, apabila ingin membuat kelas dan ingin mengatur posisinya,
             // harus objek dari kelasnya yang di rombak

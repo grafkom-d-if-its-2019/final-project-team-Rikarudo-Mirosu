@@ -1,6 +1,11 @@
 function Hitbox() {
     function isUserHitWithBullet() {
-
+        for (i = 0; i < bulletEnemy.length; i++){
+            if(AbsoluteDistance(player1.object.position.y, bulletEnemy[i].position.y) < 1 &&
+               AbsoluteDistance(player1.object.position.x, bulletEnemy[i].position.x) < 1) {
+                player1.PlayerHit();
+               }
+        }
     }
 
     //fungsi ini buat mengehitung jarak absolut dari dua objek. sengaja dipisahkan biar
