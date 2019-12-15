@@ -127,8 +127,8 @@
 	// 	plane.position.z = 0;
 	// 	scene.add( plane );
 
-        var overlayGeometry = new THREE.PlaneGeometry(7, 3, 1, 1); 
-        var overlayMaterial = new THREE.MeshBasicMaterial({ color: 0xffff });
+        var overlayGeometry = new THREE.PlaneGeometry(9, 5, 1, 1); 
+        var overlayMaterial = new THREE.MeshBasicMaterial({ color: 0x0afff });
         var overlay = new THREE.Mesh( overlayGeometry, overlayMaterial );
 
         // var quarternion = new THREE.Quarternion();
@@ -137,11 +137,14 @@
         overlay.applyQuaternion(quarternion)
 
         overlay.position.x = plane_limitx;
-        overlay.position.y = -plane_limity;
-        overlay.position.z = 6;
-        overlay.lookAt( 0, 0, 20 )
+        overlay.position.y = -plane_limity - 1;
+        overlay.position.z = 0.1;
+        //overlay.lookAt( 0, -5, 20 )
+        // overlay.lookAt(camera.position)
         // overlay.quaternion.copy( camera. quaternion );
+        //helper = new THREE.FaceNormalsHelper( overlay, 5, 0x00ff00, 3 );
         scene.add(overlay)
+        //scene.add(helper)
 
         var planeTexture = new THREE.ImageUtils.loadTexture( 'grass.jpg' ); //256x256
         planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping; 
