@@ -39,6 +39,7 @@ class Player {
         
         if(time-3 == deathTime)
         {
+            alive = true
             scene.add(this._object)
         }
     }
