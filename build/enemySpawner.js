@@ -33,28 +33,27 @@ function enemySpawner() {
         }
     } else if (time > 10 && time <= 11) {
         if (time >= 10 && time < 10.1) {
-            new MinionsxLogLeft(3, -5, 1, 0.01, 0, 0.0003, 6, 4, 0) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogLeft(3, -6, 1, 0.01, 0, 0.0003, 7, 4, 0) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogLeft(3, -3, 1, 0.01, 0, 0.0003, 4, 4, 0) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogLeft(3, -2, 1, 0.01, 0, 0.0003, 3, 4, 0) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogLeft(3, -4, 1, 0.01, 0, 0.0003, 5, 4, 0) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogLeft(3, -5, 1, 0.01, 0, 0.0003, 6, 4, 0, 3).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogLeft(3, -6, 1, 0.01, 0, 0.0003, 7, 4, 0, 3).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogLeft(3, -3, 1, 0.01, 0, 0.0003, 4, 4, 0, 3).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogLeft(3, -2, 1, 0.01, 0, 0.0003, 3, 4, 0, 3).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogLeft(3, -4, 1, 0.01, 0, 0.0003, 5, 4, 0, 3).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
 
-            new MinionsxLogRight(3, 3, 1, 0.01, 0, 0.0003, -3, 4, 2) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogRight(3, 4, 1, 0.01, 0, 0.0003, -4, 4, 2) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogRight(3, 5, 1, 0.01, 0, 0.0003, -5, 4, 2) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogRight(3, 6, 1, 0.01, 0, 0.0003, -6, 4, 2) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogRight(3, 7, 1, 0.01, 0, 0.0003, -7, 4, 2)
-                //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogRight(3, 3, 1, 0.01, 0, 0.0003, -3, 4, 2, 3).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogRight(3, 4, 1, 0.01, 0, 0.0003, -4, 4, 2, 3).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogRight(3, 5, 1, 0.01, 0, 0.0003, -5, 4, 2, 3).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogRight(3, 6, 1, 0.01, 0, 0.0003, -6, 4, 2, 3).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogRight(3, 7, 1, 0.01, 0, 0.0003, -7, 4, 2, 3).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
         }
 
     } else if (time >= 19 && time <= 20) {
 
         if (time <= 19.4 && time > 19.3) {
-            new MinionsxLogLeft(3, -5, 1, 0.05, -5, 0.0003, 3, 4, 1) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogLeft(3, -6, 1, 0.05, -6, 0.0003, 4, 4, 1) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogLeft(3, -3, 1, 0.05, -3, 0.0003, 1, 4, 1) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogLeft(3, -2, 1, 0.05, -2, 0.0003, 0, 4, 1) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogLeft(3, -4, 1, 0.05, -4, 0.0003, 2, 4, 1) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogLeft(3, -5, 1, 0.05, -5, 0.0003, 3, 4, 1, 4).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogLeft(3, -6, 1, 0.05, -6, 0.0003, 4, 4, 1, 4).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogLeft(3, -3, 1, 0.05, -3, 0.0003, 1, 4, 1, 4).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogLeft(3, -2, 1, 0.05, -2, 0.0003, 0, 4, 1, 4).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogLeft(3, -4, 1, 0.05, -4, 0.0003, 2, 4, 1, 4).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
 
             // new MinionsxLogRight(3, 3, 1, 0.1, 3, 0.0001, 0, 2, 2) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
             // new MinionsxLogRight(3, 3, 1, 0.1, 3, 0.0001, 0, 2, 1) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
@@ -65,21 +64,21 @@ function enemySpawner() {
         }
 
         if (time <= 19.8 && time > 19.7) {
-            new MinionsxLogRight(3, 3, 1, 0.05, 3, 0.0001, -3, 2, 1) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogRight(3, 0, 1, 0.05, 0, 0.0001, 0, 2, 1) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogRight(3, 1, 1, 0.05, 1, 0.0001, -1, 2, 1) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogRight(3, 2, 1, 0.05, 2, 0.0001, -2, 2, 1) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogRight(3, 4, 1, 0.05, 4, 0.0001, -4, 2, 1) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogRight(3, 3, 1, 0.05, 3, 0.0001, -3, 2, 1, 4).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogRight(3, 0, 1, 0.05, 0, 0.0001, 0, 2, 1, 4).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogRight(3, 1, 1, 0.05, 1, 0.0001, -1, 2, 1, 4).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogRight(3, 2, 1, 0.05, 2, 0.0001, -2, 2, 1, 4).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogRight(3, 4, 1, 0.05, 4, 0.0001, -4, 2, 1, 4).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
 
         }
 
 
         if (time <= 19.2 && time > 20.1) {
-            new MinionsxLogRight(3, 3, 1, 0.05, 3, 0.0001, 0, 2, 1) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogRight(3, 3, 1, 0.05, 3, 0.0001, 0, 2, 1) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogRight(3, 3, 1, 0.05, 3, 0.0001, 0, 2, 1) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogRight(3, 3, 1, 0.05, 3, 0.0001, 0, 2, 1) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
-            new MinionsxLogRight(3, 3, 1, 0.05, 3, 0.0001, 0, 2, 1) //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogRight(3, 3, 1, 0.05, 3, 0.0001, 0, 2, 1, 3).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogRight(3, 3, 1, 0.05, 3, 0.0001, 0, 2, 1, 3).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogRight(3, 3, 1, 0.05, 3, 0.0001, 0, 2, 1, 3).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogRight(3, 3, 1, 0.05, 3, 0.0001, 0, 2, 1, 3).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
+            new MinionsxLogRight(3, 3, 1, 0.05, 3, 0.0001, 0, 2, 1, 3).shootAble = true //head (-1 dari atas ke bawah),x,lebar,speed,translation,akselerasi,xboundary,delay,outOrientation,waitshot
         }
 
     } else if (time >= 30 && time < 39) {
