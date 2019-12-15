@@ -32,22 +32,7 @@
         //raycast and mouse
         var raycaster = new THREE.Raycaster();
         var mouse = new THREE.Vector2();
-        
-
-        // create an AudioListener and add it to the camera
-        var listener = new THREE.AudioListener();
-        camera.add( listener );
-
-        // create a global audio source
-        var sound = new THREE.Audio( listener );
-        // load a sound and set it as the Audio object's buffer
-        var audioLoader = new THREE.AudioLoader();
-        audioLoader.load( 'sounds/ambient.ogg', function( buffer ) {
-            sound.setBuffer( buffer );
-            sound.setLoop( true );
-            sound.setVolume( 0.5 );
-            sound.play();
-        });
+      
 
 
         function onMouseMove(event) {
@@ -212,6 +197,7 @@ scene.add( light );
             var keyCode = event.which;
             if (keyCode == 90) {//z
                 window.open("http://localhost/final-project-team-Rikarudo-Mirosu/index.html","_self");
+            
             } else if (keyCode == 88) {//x
                 window.open("http://localhost/final-project-team-Rikarudo-Mirosu/petunjuk.html","_self");
             } else if (keyCode == 27) {//esc
