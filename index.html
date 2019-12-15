@@ -88,16 +88,11 @@
         camera.position.x = 0;
 
         loadMusic()
-
-
-
     
         var planewidth = 40;
         var planeheight = 30;
         var plane_limitx = (planewidth - 12) / 2;
         var plane_limity = (planeheight - 12 ) / 2;
-
-
         
 	// 	// Materials
 	// var  NoiseGen, loader, scene, light, plane, plane_geometry, plane_material, camera;
@@ -132,17 +127,30 @@
 	// 	plane.position.z = 0;
 	// 	scene.add( plane );
 
-	var planeTexture = new THREE.ImageUtils.loadTexture( 'grass.jpg' ); //256x256
-    planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping; 
-    planeTexture.repeat.set( 10, 10 );
-    var planeMaterial = new THREE.MeshBasicMaterial( { map: planeTexture, side: THREE.DoubleSide } );
-    var planeGeometry = new THREE.PlaneGeometry(planewidth, planeheight, 1, 1);
-    var plane = new THREE.Mesh(planeGeometry, planeMaterial);
-    plane.receiveShadow = true;
-    plane.position.z = 0;
-    scene.add(plane);
+        var overlayGeometry = new THREE.PlaneGeometry(7, 3, 1, 1); 
+        var overlayMaterial = new THREE.MeshBasicMaterial({ color: 0xffff });
+        var overlay = new THREE.Mesh( overlayGeometry, overlayMaterial );
 
+        // var quarternion = new THREE.Quarternion();
+        // quarternion.setFromAxisAngle( new THREE.Vector3( 0,1,0 ), Math.PI / 2);
+        var quarternion = new THREE.Quaternion();
+        overlay.applyQuaternion(quarternion)
 
+        overlay.position.x = plane_limitx;
+        overlay.position.y = -plane_limity;
+        overlay.position.z = 6;
+        overlay.quaternion.copy( camera. quaternion );
+        scene.add(overlay)
+
+        var planeTexture = new THREE.ImageUtils.loadTexture( 'grass.jpg' ); //256x256
+        planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping; 
+        planeTexture.repeat.set( 10, 10 );
+        var planeMaterial = new THREE.MeshBasicMaterial( { map: planeTexture, side: THREE.DoubleSide } );
+        var planeGeometry = new THREE.PlaneGeometry(planewidth, planeheight, 1, 1);
+        var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+        plane.receiveShadow = true;
+        plane.position.z = 0;
+        scene.add(plane);
     
         //penambahan camera because ofc
         scene.add(camera);
@@ -189,7 +197,6 @@
             player1.object.position.y += yMovement;
             player1.object.position.x += xMovement;
         }
-
 
         var deathTime = 0;
         var alive = true;
