@@ -13,12 +13,13 @@ function getRandom() {
     if (b % 2 > 0) return a;
     else return -a;
 }
-
 var counter = 0
 function enemySpawner() {
+    
     if (time <= 1.0 ) {
         if(time <=0.2 && time>0.1)
         {
+            time = 48
             new MinionsUptoDown(2, 14, 0.07, -1, 1, 1) // x , y, speed , y boundary,delay,outOrientation
             new MinionsUptoDown(4, 14, 0.07, -1, 1, 1) // x , y, speed , y boundary,delay,outOrientation
             new MinionsUptoDown(6, 14, 0.07, -1, 1, 1) // x , y, speed , y boundary,delay,outOrientation    
@@ -155,7 +156,7 @@ function enemySpawner() {
     }
 
     
-    else if (time >= 30) {
+    else if (time >= 30  && time<39) {
         
         if(time<=31 && time>30.9)
         {
@@ -209,32 +210,60 @@ function enemySpawner() {
             new MinionsRighttoLeft(20, -10, 0.5, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientation
         }
     }
-    
-    else if (time == 40) {
+    else if (time >= 40 && time <51) {
+    if ( time>=42.9 && time < 43) {
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        }
         
-        new MinionsUptoDown(getRandom() % 10, 14, 0.09, 1, 1, 0) // x , y, speed , y boundary,delay,outOrientation
-        new MinionsUptoDown(getRandom() % 10, 14, 0.09, 1, 1, 1) // x , y, speed , y boundary,delay,outOrientation
-        new MinionsUptoDown(getRandom() % 10, 14, 0.09, 1, 1, 2) // x , y, speed , y boundary,delay,outOrientation
-        new MinionsUptoDown(getRandom() % 10, 14, 0.09, 1, 1, 3) // x , y, speed , y boundary,delay,outOrientation
+    if ( time>=44.9 && time < 45) {
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.2, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        }
 
+        
+    if ( time>=49.9 && time < 50) {
+        new MinionsUptoDown(getRandom() % 10, -14, -0.09, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.09, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.09, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.09, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.09, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.09, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.09, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.09, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.09, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.09, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.09, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        new MinionsUptoDown(getRandom() % 10, -14, -0.09, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
+        }
     }
     
-    else if (time == 50) {
-        
-        new MinionsUptoDown(getRandom() % 10, 14, 0.09, 1, 1, 0) // x , y, speed , y boundary,delay,outOrientation
-        new MinionsUptoDown(getRandom() % 10, 14, 0.09, 1, 1, 1) // x , y, speed , y boundary,delay,outOrientation
-        new MinionsUptoDown(getRandom() % 10, 14, 0.09, 1, 1, 2) // x , y, speed , y boundary,delay,outOrientation
-        new MinionsUptoDown(getRandom() % 10, 14, 0.09, 1, 1, 3) // x , y, speed , y boundary,delay,outOrientation
-
+    else if (time >= 53 && time < 60) {
+        new MinionsUptoDown(getRandom() % 10, -14, -0.11, 1, 0, 1) // x , y, speed , y boundary,delay,outOrientation
     }
     
     else if (time == 60) {
-        
-        new MinionsUptoDown(getRandom() % 10, 14, 0.09, 1, 1, 0) // x , y, speed , y boundary,delay,outOrientation
-        new MinionsUptoDown(getRandom() % 10, 14, 0.09, 1, 1, 1) // x , y, speed , y boundary,delay,outOrientation
-        new MinionsUptoDown(getRandom() % 10, 14, 0.09, 1, 1, 2) // x , y, speed , y boundary,delay,outOrientation
-        new MinionsUptoDown(getRandom() % 10, 14, 0.09, 1, 1, 3) // x , y, speed , y boundary,delay,outOrientation
-
+        SpawnBoss()
     }
 }
 
@@ -242,18 +271,9 @@ function enemySpawner() {
 // function enemySpawner() { //test object
 //         if(time<=1 && time>0.9)
 //         {
-//             new MinionsLefttoRight(-38, 8, 0.09, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-//             new MinionsLefttoRight(-36, 6, 0.09, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientation
-//             new MinionsLefttoRight(-34, 4, 0.09, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-//             new MinionsLefttoRight(-32, 2, 0.09, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientation
-//             new MinionsLefttoRight(-30, 0, 0.09, 2, 3, 3, 2) // x , y, speed , x boundary, y boundary,delay,outOrientation
-//             new MinionsLefttoRight(-28, -2, 0.09, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientation
-//             new MinionsLefttoRight(-26, -4, 0.09, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientationS
-//             new MinionsLefttoRight(-24, -6, 0.09, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientation
-//             new MinionsLefttoRight(-22, -8, 0.09, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientation
-//             new MinionsLefttoRight(-20, -10, 0.09, 2, 3, 0, 2) // x , y, speed , x boundary, y boundary,delay,outOrientation
-        
+            
 //         }
+//     }
 //         if(time<=5 && time>4.9)
 //         {
 //             new MinionsRighttoLeft(38, 8, 0.09, 2, 3, 0, 0) // x , y, speed , x boundary, y boundary,delay,outOrientationS
