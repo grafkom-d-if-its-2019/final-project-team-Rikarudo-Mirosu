@@ -53,12 +53,42 @@
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-        var directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-        scene.add(directionalLight);
-        var spotLight = new THREE.SpotLight(0xffffff);
-        spotLight.position.set(10, 100, 10);
-        scene.add(spotLight);
-        scene.add(new THREE.AmbientLight(0x252525));
+            
+        //  lightbox.position.x=0;
+        //  lightbox.position.y=0;
+        //  lightbox.position.z=0;
+
+        // var Light = new THREE.DirectionalLight(0xffffff, 10);
+        //  Light.position.set( 0, 1000, 0);
+        // //Light.target.position.set( 0, 0, 0 );
+        // var lightbox 
+        // Light.target = lightbox;
+        // scene.add(Light);
+        // Light.castShadow = true;
+         
+        
+        //plane.receiveShadow = true;
+
+ 
+
+            //    var dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
+			// 	dirLight.color.setHSL( 0.1, 1, 0.95 );
+			// 	dirLight.position.set( 0, 1000, 0 );
+            //     dirLight.target = plane;
+			// 	dirLight.position.multiplyScalar( 30 );
+			// 	scene.add( dirLight );
+			// 	dirLight.castShadow = true;
+			// 	dirLight.shadow.mapSize.width = 2048;
+			// 	dirLight.shadow.mapSize.height = 2048;
+            //     var dirLightHeper = new THREE.DirectionalLightHelper( dirLight, 10 );
+            //     dirLightHeper.matrixWorldNeedsUpdate = true
+			// 	scene.add( dirLightHeper );
+            //     camera.updateProjectionMatrix();
+        
+        // var spotLight = new THREE.SpotLight(0xffffff);
+        // spotLight.position.set(0, 100, 0);
+        // // scene.add(spotLight);
+        // scene.add(new THREE.AmbientLight(0x252525));
 
         var renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -68,6 +98,10 @@
         var material = new THREE.MeshBasicMaterial({
             color: 0xffff
         });
+
+
+
+
         var player1 = new Player();
         player1.castShadow = true;
 
@@ -135,7 +169,7 @@
         });
         var planeGeometry = new THREE.PlaneGeometry(planewidth, planeheight, 1, 1);
         var plane = new THREE.Mesh(planeGeometry, planeMaterial);
-        plane.receiveShadow = true;
+        
         plane.position.z = 0;
         scene.add(plane);
 
@@ -164,7 +198,7 @@
 
         function planeMovement() {
 
-            plane.position.y -= 0.07;
+          //  plane.position.y -= 0.07;
 
         }
 
@@ -222,6 +256,8 @@
             bulletAliveCheck();
             moveEnemy();
             shootEnemy();
+            
+         
             frame++;
             if (frame >= 6) {
                 if (alive)
@@ -231,6 +267,7 @@
                 if (!alive) player1.PlayerRespawn()
                 div.textContent = angka;
                 div2.textContent = player1.life;
+                
             }
             //oh, perlu diketahui, apabila ingin membuat kelas dan ingin mengatur posisinya,
             // harus objek dari kelasnya yang di rombak
