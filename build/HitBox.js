@@ -31,6 +31,7 @@ function Hitbox() {
                     AbsoluteDistance(bullets[i].position.x, enemy[j].object.position.x) < 1) {
                     if (enemy[j].EnemyHit()) { //fungsi dari Enemy hit akan mereturn true, apabila musuh ter-VibeCheck, false apabila masih hidup
                         enemy.splice(j, 1);
+                        angka += 200;
                     }
                     bullets[i].alive = false; //ini akan menset nilai bullets jadi false, biar bullletnya hilang.
                 }

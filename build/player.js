@@ -33,6 +33,9 @@ class Player {
             // this.life -= 10;
             if (this.life <= 0) this.VibeCheck();
             scene.remove(this._object)
+            
+            angka -= 1000;
+            if(angka < 0) angka = 0
 
             deathTime = time
             alive = false
