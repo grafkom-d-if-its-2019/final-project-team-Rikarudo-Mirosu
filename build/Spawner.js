@@ -63,7 +63,7 @@ class musuh {
         if (this.object.position.x >= 30 || this.object.position.x <= -30) {
             return false;
         }
-        if (this.object.position.y >= 15 && this.object.position.y <= -15&& this._DeleteBasedOnY) {
+        if (this.object.position.y >= 15 || this.object.position.y<= -15 && this._DeleteBasedOnY) {
             return false;
         }
         return true;
