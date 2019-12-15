@@ -1,0 +1,47 @@
+loader = new THREE.TextureLoader();
+		
+		// Materials
+		var  NoiseGen, loader,
+		 scene, light, plane, plane_geometry, plane_material, camera;
+	var planeTexture = new THREE.ImageUtils.loadTexture( 'grass.jpg' ); //256x256
+    planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping; 
+    planeTexture.repeat.set( 10, 10 );
+	plane_material.map.wrapS =plane_material.map.wrapT = THREE.RepeatWrapping;
+	plane_material.map.repeat.set( 2.5, 2.5 );
+		
+		//plane
+		NoiseGen = new SimplexNoise;
+		
+	plane_geometry = new THREE.PlaneGeometry( 75, 75, 50, 50 );
+		for ( var i = 0; i <plane_geometry.vertices.length; i++ ) {
+			var vertex =plane_geometry.vertices[i];
+			vertex.z = NoiseGen.noise( vertex.x / 10, vertex.y / 10 ) * 2;
+		}
+	plane_geometry.computeFaceNormals();
+	plane_geometry.computeVertexNormals();
+		
+		// If your plane is not square as far as face count then the HeightfieldMesh
+		// takes two more arguments at the end: # of x faces and # of y faces that were passed to THREE.PlaneMaterial
+		var plane = new Physijs.HeightfieldMesh(
+		plane_geometry,
+		plane_material,
+			0, // mass
+			50,50);
+		plane.rotation.x = Math.PI / -2;
+		plane.receiveShadow = true;
+		plane.position.z = 0;
+		scene.add( plane );
+
+
+
+
+
+	var planeTexture = new THREE.ImageUtils.loadTexture( 'grass.jpg' ); //256x256
+    planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping; 
+    planeTexture.repeat.set( 10, 10 );
+    var planeMaterial = new THREE.MeshBasicMaterial( { map: planeTexture, side: THREE.DoubleSide } );
+    var planeGeometry = new THREE.PlaneGeometry(planewidth, planeheight, 1, 1);
+    var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+    plane.receiveShadow = true;
+    plane.position.z = 0;
+    scene.add(plane);

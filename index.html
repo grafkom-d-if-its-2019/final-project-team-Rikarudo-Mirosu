@@ -25,7 +25,6 @@
     <script src="build/HitBox.js"></script>
     <script src="build/player.js"></script>
     <script src="build/music.js"></script>
-    <script src="build/physi.js"></script>
     <script src="build/simplex-noise.js"></script>
     <script src="build/perlin.js"></script>
     <script src="build/overlay.js"></script>
@@ -47,7 +46,10 @@
         var bulletEnemy = [];
         var frame = 0;
         var time = 0;
-
+       
+        
+        //const Perlin = require('build/perlin.js').Perlin;
+      
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
@@ -137,6 +139,21 @@
         plane.position.z = 0;
         scene.add(plane);
 
+        var perlin = new Perlin();
+        var peak = 60;
+        var smoothing = 300;
+        function refreshVertices() {
+        var vertices = plane.geometry.attributes.position.array;
+        for (var i = 0; i <= vertices.length; i += 3) {
+        vertices[i+2] = peak * perlin.noise(
+            (plane.position.x + vertices[i])/smoothing, 
+            (plane.position.z + vertices[i+1])/smoothing
+        );
+    }
+    plane.geometry.attributes.position.needsUpdate = true;
+    plane.geometry.computeVertexNormals();
+}
+    
         //penambahan camera because ofc
         scene.add(camera);
         camera.lookAt(plane.position);
