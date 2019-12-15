@@ -196,25 +196,29 @@ scene.add( light );
 
         // load a sound and set it as the Audio object's buffer
         var audioLoader = new THREE.AudioLoader();  
-        
+        audioLoader.load( 'sounds/With_The_Wind.mp3', function( buffer ) {
+                sound.setBuffer( buffer );
+                sound.setVolume(0.5);
+                sound.play();
+        });
         document.addEventListener("keydown", onDocumentKeyDown, false);
         function onDocumentKeyDown(event) {
             var keyCode = event.which;
             if (keyCode == 90) {//z
                 
                 audioLoader.load( 'sounds/Button_Back_Sound.ogg', function( buffer ) {
-                sound.setBuffer( buffer );
-                sound.setVolume(0.5);
-                sound.play();
+                    sound.setBuffer( buffer );
+                    sound.setVolume(0.5);
+                    sound.play();
                  });
                 window.open("http://localhost/final-project-team-Rikarudo-Mirosu/index.html","_self");
                 
             
             } else if (keyCode == 88) {//x
                 audioLoader.load( 'sounds/Button_Back_Sound.ogg', function( buffer ) {
-                sound.setBuffer( buffer );
-                sound.setVolume(0.5);
-                sound.play();
+                    sound.setBuffer( buffer );
+                    sound.setVolume(0.5);
+                    sound.play();
                 });
                 window.open("http://localhost/final-project-team-Rikarudo-Mirosu/petunjuk.html","_self");
             } else if (keyCode == 27) {//esc
