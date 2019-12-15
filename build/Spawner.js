@@ -16,7 +16,7 @@ function Spawn(x, y) { //tulung diisikan Geomtery dan material untuk minions
 function SpawnBoss(x, y) { //tulung diisikan Geomtery dan material untuk minions
     var geometry = new THREE.BoxGeometry(1, 1, 1);
     var material = new THREE.MeshBasicMaterial({
-        color: 0x0afff
+        color: 0xffff
     });
     var cubec = new THREE.Mesh(geometry, material);
     cubec.position.set(
@@ -29,22 +29,44 @@ function SpawnBoss(x, y) { //tulung diisikan Geomtery dan material untuk minions
 
 
 class musuh {
-    constructor(health, attack, speed, delay) {
+    constructor(health, attack, speed, delay, waitshot) {
         this.health = health;
         this.attack = attack;
         this._object = null;
         this._speed = speed;
         this._delay = delay * 60;
         this._time = 0;
+        this._shotTime = 0;
         this._DeleteBasedOnY = true
+        this._shootAble = false;
+        this.waitshot = waitshot
+        this._lifeTime = 0
     }
     VibeCheck() {
         scene.remove(this.object);
-        console.log("terhapus")
+        console.log("kok terhapus")
         delete this;
+    }
+    get shootAble() {
+        return this._shootAble
+    }
+    set shootAble(x) {
+        this._shootAble = x
     }
     get object() {
         return this._object;
+    }
+    get shotTime() {
+        return this._shotTime
+    }
+    set shotTime(x) {
+        this._shotTime = x
+    }
+    get lifeTime() {
+        return this._lifeTime
+    }
+    set lifeTime(x) {
+        this._lifeTime = x
     }
     isNotDelayed() {
         if (this._time == this._delay) return true
@@ -60,10 +82,10 @@ class musuh {
         return false;
     }
     checkOutOfBound() {
-        if (this.object.position.x >= 45 || this.object.position.x <= -45) {
+        if (this.object.position.x >= 50 || this.object.position.x <= -50) {
             return false;
         }
-        if (this.object.position.y >= 15 || this.object.position.y<= -15 && this._DeleteBasedOnY) {
+        if (this.object.position.y >= 50 || this.object.position.y <= -50 && this._DeleteBasedOnY) {
             return false;
         }
         return true;
@@ -107,13 +129,17 @@ class musuh {
 
 
 class Minions extends musuh {
-    constructor(x, y, speed, delay, outOrientation) {
-        super(6, 12, speed, delay);
+    constructor(x, y, speed, delay, outOrientation, waitshot) {
+        super(45, 12, speed, delay, waitshot);
         this._back = true
         this.outOrientation = outOrientation
     }
     shootPeebles() {
-
+        if (this._shootAble && this.waitshot <= this._lifeTime / 60 && this._shotTime % 30 == 0) {
+            spawnshootEnemy(this.object.position.x, this.object.position.y)
+            this._shotTime = 0;
+        }
+        this._shotTime++;
     }
     set back(x) {
         this._back = x
@@ -124,8 +150,8 @@ class Minions extends musuh {
 }
 
 class MinionsUptoDown extends Minions {
-    constructor(x, y, speed, yboundary, delay, outOrientation) {
-        super(6, 12, speed, delay, outOrientation);
+    constructor(x, y, speed, yboundary, delay, outOrientation, waitshot) {
+        super(6, 12, speed, delay, outOrientation, waitshot);
         this._object = Spawn(x, y);
         this.yboundary = yboundary
         enemy.push(this);
@@ -147,8 +173,8 @@ class MinionsUptoDown extends Minions {
     }
 }
 class MinionsRighttoLeft extends Minions {
-    constructor(x, y, speed, xboundary, yboundary, delay, outOrientation) {
-        super(6, 12, speed, delay, outOrientation);
+    constructor(x, y, speed, xboundary, yboundary, delay, outOrientation, waitshot) {
+        super(6, 12, speed, delay, outOrientation, waitshot);
         this._object = Spawn(x, y);
         this.xboundary = xboundary
         this.yboundary = yboundary
@@ -172,8 +198,8 @@ class MinionsRighttoLeft extends Minions {
 
 
 class MinionsLefttoRight extends Minions {
-    constructor(x, y, speed, xboundary, yboundary, delay, outOrientation) {
-        super(6, 12, speed, delay, outOrientation);
+    constructor(x, y, speed, xboundary, yboundary, delay, outOrientation, waitshot) {
+        super(6, 12, speed, delay, outOrientation, waitshot);
         this._object = Spawn(x, y);
         this.xboundary = xboundary
         this.yboundary = yboundary
@@ -198,8 +224,8 @@ class MinionsLefttoRight extends Minions {
 
 
 class MinionsxLogLeft extends Minions {
-    constructor(head, x, lebar, speed, translation, accelerate, xboundary, delay, outOrientation) {
-        super(6, 12, speed, delay, outOrientation);
+    constructor(head, x, lebar, speed, translation, accelerate, xboundary, delay, outOrientation, waitshot) {
+        super(6, 12, speed, delay, outOrientation, waitshot);
         this._object = Spawn(x, 12);
         this._DeleteBasedOnY = false
         this.xboundary = xboundary
@@ -244,8 +270,8 @@ class MinionsxLogLeft extends Minions {
 }
 
 class MinionsxLogRight extends Minions {
-    constructor(head, x, lebar, speed, translation, accelerate, xboundary, delay, outOrientation) {
-        super(6, 12, speed, delay, outOrientation);
+    constructor(head, x, lebar, speed, translation, accelerate, xboundary, delay, outOrientation, waitshot) {
+        super(6, 12, speed, delay, outOrientation, waitshot);
         this._object = Spawn(x, 12);
 
         this._DeleteBasedOnY = false
@@ -267,8 +293,6 @@ class MinionsxLogRight extends Minions {
         } else {
             if (this.isNotDelayed()) {
                 this._back = false
-
-
                 this._DeleteBasedOnY = true
                 if (this.outOrientation == 0) this.object.translateX(-1 * this.speed); //kiri
                 else if (this.outOrientation == 1) this.object.translateY(-1 * this.speed); //bawah
@@ -293,7 +317,7 @@ class MinionsxLogRight extends Minions {
 //new MinionsxLog(-11, 0, 10, 0.0005, -3, 0.0001) //head (-1 dari atas ke bawah),x,y,speed,translation,akselerasi
 class Boss extends musuh {
     constructor(x, y, speed) {
-        super(100, 120, speed);
+        super(1000, 120, speed);
         this._object = SpawnBoss(x, y);
         enemy.push(this);
         scene.add(this._object);
@@ -310,6 +334,8 @@ function moveEnemy() {
     var k = 0;
     for (k = 0; k < enemy.length; k++) {
         enemy[k].move();
+        enemy[k].lifeTime += 1
+        enemy[k].shootPeebles();
         if (!enemy[k].checkOutOfBound()) {
             enemy[k].VibeCheck();
             enemy.splice(k, 1);

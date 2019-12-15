@@ -19,7 +19,11 @@ class Player {
     get object() {
         return this._object; //untuk get object, cara ngaksesnya cukup (instansi).object
     }
-
+    
+    PlayerHealthNow(){
+        return this.life;
+    }
+    
     PlayerHit() {
 
         if(this.isHittable == true){
@@ -29,6 +33,9 @@ class Player {
             // this.life -= 10;
             if (this.life <= 0) this.VibeCheck();
             scene.remove(this._object)
+            
+            angka -= 1000;
+            if(angka < 0) angka = 0
 
             deathTime = time
             alive = false
@@ -40,7 +47,8 @@ class Player {
     
         if(time-3 >= deathTime && time-3 - deathTime<0.9)
         {
-
+            
+            
             this.life -= 10;
             this.isHittable = true
             this._object.position.x = 0;

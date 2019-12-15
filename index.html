@@ -17,6 +17,8 @@
 </head>
 
 <body>
+    <!-- s<div id="info">Deskripsi</div> -->
+
     <script src="build/three.js"></script>
     <script src="build/Spawner.js"></script>
     <script src="build/bullet.js"></script>
@@ -27,6 +29,8 @@
     <script src="build/perlin.js"></script>
     <script src="build/overlay.js"></script>
     <script src="build/enemySpawner.js"></script>
+    <script src="build/threex.dynamictexture.js"></script>
+    <script src="build/enemyshoot.js"></script>
     <script>
         // bagian inisiasi objek
 
@@ -49,8 +53,8 @@
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-        var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
-        scene.add( directionalLight );
+        var directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+        scene.add(directionalLight);
         var spotLight = new THREE.SpotLight(0xffffff);
         spotLight.position.set(10, 100, 10);
         scene.add(spotLight);
@@ -84,74 +88,51 @@
         //ini buat bikin camera
 
         camera.position.z = 20 //mode normal;
-        // camera.position.z = 50 //mode mata elang;
+            // camera.position.z = 50 //mode mata elang;
 
         camera.position.y = -5;
         camera.position.x = 0;
 
         loadMusic()
-    
+
         var planewidth = 40;
-        var planeheight = 30;
+        var planeheight = 69420;
         var plane_limitx = (planewidth - 12) / 2;
-        var plane_limity = (planeheight - 12 ) / 2;
+        var plane_limity = 9;
+
+        // unused Material 2
+        function lifeOverlay() {}
+        var angka = 0;
+        var lifepoint = player1.life
+        // angka += 1;
+        var div = document.createElement('div');
+        var div2 = document.createElement('div');
         
-	// 	// Materials
-	// var  NoiseGen, loader, scene, light, plane, plane_geometry, plane_material, camera;
-	// var planeTexture = new THREE.ImageUtils.loadTexture( 'grass.jpg' ); //256x256
-    // planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping; 
-    // planeTexture.repeat.set( 10, 10 );
-    // var planeMaterial = new THREE.MeshBasicMaterial( { map: planeTexture, side: THREE.DoubleSide } );
-    // // plane_material.wrapS =plane_material.wrapT = THREE.RepeatWrapping;
-	// // plane_material.repeat.set( 2.5, 2.5 );
-		
-	// 	//plane
-	// 	NoiseGen = new SimplexNoise;
-		
-	// planeGeometry = new THREE.PlaneGeometry( planewidth, planeheight, 1, 1 );
-	// 	for ( var i = 0; i <planeGeometry.vertices.length; i++ ) {
-	// 		var vertex =planeGeometry.vertices[i];
-	// 		vertex.z = NoiseGen.noise( vertex.x / 10, vertex.y / 10 ) * 2;
-	// 	}
-	// planeGeometry.computeFaceNormals();
-	// planeGeometry.computeVertexNormals();
-		
-	// 	// If your plane is not square as far as face count then the HeightfieldMesh
-	// 	// takes two more arguments at the end: # of x faces and # of y faces that were passed to THREE.PlaneMaterial
-	// 	// var plane = new Physijs.HeightfieldMesh(
-	// 	// plane_geometry,
-	// 	// plane_material,
-	// 	// 	0, // mass
-    //     // 	50,50);
-    //      var plane = new THREE.Mesh(planeGeometry, planeMaterial);
-	// 	plane.rotation.x = Math.PI / -2;
-	// 	plane.receiveShadow = true;
-	// 	plane.position.z = 0;
-	// 	scene.add( plane );
+        div.textContent = angka;
+        div.style.fontSize = '100px'
+        div.style.color = 'white';
+        div.style.position = 'absolute';
+        div.style.top = '90px';
+        div.style.right = '90px';
 
-        var overlayGeometry = new THREE.PlaneGeometry(9, 5, 1, 1); 
-        var overlayMaterial = new THREE.MeshBasicMaterial({ color: 0xFFFFFF, transparent: true, opacity: 0.2 });
-        var overlay = new THREE.Mesh( overlayGeometry, overlayMaterial );
+        div2.textContent = lifepoint;
+        div2.style.fontSize = '100px'
+        div2.style.color = 'white';
+        div2.style.position = 'absolute';
+        div2.style.top = '90px';
+        div2.style.left = '50px';
 
-        // var quarternion = new THREE.Quarternion();
-        // quarternion.setFromAxisAngle( new THREE.Vector3( 0,1,0 ), Math.PI / 2);
-        var quarternion = new THREE.Quaternion();
-        overlay.applyQuaternion(quarternion)
+        document.body.appendChild(div);
+        document.body.appendChild(div2);
 
-        overlay.position.x = plane_limitx;
-        overlay.position.y = -plane_limity - 1;
-        overlay.position.z = 0.1;
-        //overlay.lookAt( 0, -5, 20 )
-        // overlay.lookAt(camera.position)
-        // overlay.quaternion.copy( camera. quaternion );
-        //helper = new THREE.FaceNormalsHelper( overlay, 5, 0x00ff00, 3 );
-        scene.add(overlay)
-        //scene.add(helper)
 
-        var planeTexture = new THREE.ImageUtils.loadTexture( 'grass.jpg' ); //256x256
-        planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping; 
-        planeTexture.repeat.set( 10, 10 );
-        var planeMaterial = new THREE.MeshBasicMaterial( { map: planeTexture, side: THREE.DoubleSide } );
+        var planeTexture = new THREE.ImageUtils.loadTexture('grass.jpg'); //256x256
+        planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
+        planeTexture.repeat.set(10, 10);
+        var planeMaterial = new THREE.MeshBasicMaterial({
+            map: planeTexture,
+            side: THREE.DoubleSide
+        });
         var planeGeometry = new THREE.PlaneGeometry(planewidth, planeheight, 1, 1);
         var plane = new THREE.Mesh(planeGeometry, planeMaterial);
         plane.receiveShadow = true;
@@ -181,6 +162,12 @@
         // var data = new Minions();
         // var data2 = new Boss();
 
+        function planeMovement() {
+
+            plane.position.y -= 0.07;
+
+        }
+
         Overlay();
 
         function playerCoordinateCheck() {
@@ -191,23 +178,23 @@
             // yang ini baru sebatas buat kamera normal, bakal
             // keliatan sempit kalo pakai kamera elang
 
-            if (player1.object.position.x >= plane_limitx) {            
-                    player1.object.position.x = plane_limitx - 0.01;
-            
+            if (player1.object.position.x >= plane_limitx) {
+                player1.object.position.x = plane_limitx - 0.01;
+
             }
             if (player1.object.position.x <= -plane_limitx) {
-                    player1.object.position.x = -plane_limitx + 0.01;
-            
+                player1.object.position.x = -plane_limitx + 0.01;
+
             }
             if (player1.object.position.y >= plane_limity) {
-                    player1.object.position.y = plane_limity - 0.01;
+                player1.object.position.y = plane_limity - 0.01;
             }
             // if (player1.object.position.y <= -plane_limity) {
             //         player1.object.position.y = -plane_limity + 0.01;
             // }
 
             if (player1.object.position.y <= -(plane_limity + 1)) {
-                    player1.object.position.y = -(plane_limity + 1) + 0.01;
+                player1.object.position.y = -(plane_limity + 1) + 0.01;
             }
             // player.position.x = 0;
             // player.position.y = -3;
@@ -225,6 +212,7 @@
 
         function animate() {
             if (time == 0 && frame == 0) sound.play()
+            planeMovement();
             action();
             move();
             playerCoordinateCheck();
@@ -233,13 +221,16 @@
             bulletPlaneCheck();
             bulletAliveCheck();
             moveEnemy();
-            moveBullet();
+            shootEnemy();
             frame++;
-            if (frame >= 6){
-                enemySpawner();
+            if (frame >= 6) {
+                if (alive)
+                    enemySpawner();
                 time += 0.1;
-                frame=0;
-                if(!alive) player1.PlayerRespawn()
+                frame = 0;
+                if (!alive) player1.PlayerRespawn()
+                div.textContent = angka;
+                div2.textContent = player1.life;
             }
             //oh, perlu diketahui, apabila ingin membuat kelas dan ingin mengatur posisinya,
             // harus objek dari kelasnya yang di rombak
@@ -253,5 +244,7 @@
         }
     </script>
 </body>
+
+
 
 </html>

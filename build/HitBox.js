@@ -1,6 +1,11 @@
 function Hitbox() {
     function isUserHitWithBullet() {
-
+        for (i = 0; i < bulletEnemy.length; i++){
+            if(AbsoluteDistance(player1.object.position.y, bulletEnemy[i].position.y) < 1 &&
+               AbsoluteDistance(player1.object.position.x, bulletEnemy[i].position.x) < 1) {
+                player1.PlayerHit();
+               }
+        }
     }
 
     //fungsi ini buat mengehitung jarak absolut dari dua objek. sengaja dipisahkan biar
@@ -31,6 +36,7 @@ function Hitbox() {
                     AbsoluteDistance(bullets[i].position.x, enemy[j].object.position.x) < 1) {
                     if (enemy[j].EnemyHit()) { //fungsi dari Enemy hit akan mereturn true, apabila musuh ter-VibeCheck, false apabila masih hidup
                         enemy.splice(j, 1);
+                        angka += 200;
                     }
                     bullets[i].alive = false; //ini akan menset nilai bullets jadi false, biar bullletnya hilang.
                 }
