@@ -197,21 +197,13 @@ scene.add( light );
         var sound = new THREE.Audio( listener );
 
         // load a sound and set it as the Audio object's buffer
-        var audioLoader = new THREE.AudioLoader();
-        audioLoader.load( 'sounds/Button_Back_Sound.ogg', function( buffer ) {
-                sound.setBuffer( buffer );
-                sound.setVolume(0.5);
-                sound.play();
-        });
-        
+        var audioLoader = new THREE.AudioLoader();  
         
         document.addEventListener("keydown", onDocumentKeyDown, false);
         function onDocumentKeyDown(event) {
             var keyCode = event.which;
             if (keyCode == 90) {//z
-                var mediaElement = new Audio( 'sounds/Button_Back_Sound.ogg' );
-                mediaElement.loop = true;                    
-                mediaElement.play();
+                
                 audioLoader.load( 'sounds/Button_Back_Sound.ogg', function( buffer ) {
                 sound.setBuffer( buffer );
                 sound.setVolume(0.5);
