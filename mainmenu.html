@@ -23,7 +23,7 @@
     <script>
         // bagian inisiasi objek
         
-
+        var bp,judul,mmp;
         var scene = new THREE.Scene();
         //scene for menu
         var scene1 = new THREE.Scene();
@@ -63,102 +63,6 @@ scene.add( light );
         // Instantiate a loader
         var loader = new THREE.GLTFLoader();
         // Load a glTF resource
-    loader.load(
-        // resource 
-        "model/play.glb",
-        // called when the resource is loaded
-        function ( gltf ) {
-
-                play = gltf.scene;
-                
-                scene.add( play );
-    
-                //scene.add( gltf.scene );
-
-                //gltf.animations; // Array<THREE.AnimationClip>
-                //gltf.scene; // THREE.Scene
-                //gltf.scenes; // Array<THREE.Scene>
-                //gltf.cameras; // Array<THREE.Camera>
-                //gltf.asset; // Object
-
-        },
-        // called when loading is in progresses
-        function ( xhr ) {
-
-                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-
-        },
-        // called when loading has errors
-        function ( error ) {
-
-                console.log( 'An error happened' );
-
-        }
-    );
-    loader.load(
-        // resource 
-        "model/petunjuk.glb",
-        // called when the resource is loaded
-        function ( gltf ) {
-
-                petunjuk = gltf.scene;
-                
-                scene.add( petunjuk );
-    
-                //scene.add( gltf.scene );
-
-                //gltf.animations; // Array<THREE.AnimationClip>
-                //gltf.scene; // THREE.Scene
-                //gltf.scenes; // Array<THREE.Scene>
-                //gltf.cameras; // Array<THREE.Camera>
-                //gltf.asset; // Object
-
-        },
-        // called when loading is in progresses
-        function ( xhr ) {
-
-                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-
-        },
-        // called when loading has errors
-        function ( error ) {
-
-                console.log( 'An error happened' );
-
-        }
-    );
-    loader.load(
-        // resource 
-        "model/exit.glb",
-        // called when the resource is loaded
-        function ( gltf ) {
-
-                exit = gltf.scene;
-                
-                scene.add( exit );
-    
-                //scene.add( gltf.scene );
-
-                //gltf.animations; // Array<THREE.AnimationClip>
-                //gltf.scene; // THREE.Scene
-                //gltf.scenes; // Array<THREE.Scene>
-                //gltf.cameras; // Array<THREE.Camera>
-                //gltf.asset; // Object
-
-        },
-        // called when loading is in progresses
-        function ( xhr ) {
-
-                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-
-        },
-        // called when loading has errors
-        function ( error ) {
-
-                console.log( 'An error happened' );
-
-        }
-    );
 
     loader.load(
         // resource 
@@ -169,6 +73,72 @@ scene.add( light );
                 bp = gltf.scene;
                 
                 scene.add( bp );
+    
+                //scene.add( gltf.scene );
+
+                //gltf.animations; // Array<THREE.AnimationClip>
+                //gltf.scene; // THREE.Scene
+                //gltf.scenes; // Array<THREE.Scene>
+                //gltf.cameras; // Array<THREE.Camera>
+                //gltf.asset; // Object
+
+        },
+        // called when loading is in progresses
+        function ( xhr ) {
+
+                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+        },
+        // called when loading has errors
+        function ( error ) {
+
+                console.log( 'An error happened' );
+
+        }
+    );
+
+    loader.load(
+        // resource 
+        "model/mainmenupetunjuk.glb",
+        // called when the resource is loaded
+        function ( gltf ) {
+
+                mmp = gltf.scene;
+                
+                scene.add( mmp );
+    
+                //scene.add( gltf.scene );
+
+                //gltf.animations; // Array<THREE.AnimationClip>
+                //gltf.scene; // THREE.Scene
+                //gltf.scenes; // Array<THREE.Scene>
+                //gltf.cameras; // Array<THREE.Camera>
+                //gltf.asset; // Object
+
+        },
+        // called when loading is in progresses
+        function ( xhr ) {
+
+                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+        },
+        // called when loading has errors
+        function ( error ) {
+
+                console.log( 'An error happened' );
+
+        }
+    );
+
+    loader.load(
+        // resource 
+        "model/judul.glb",
+        // called when the resource is loaded
+        function ( gltf ) {
+
+                judul = gltf.scene;
+                
+                scene.add( judul );
     
                 //scene.add( gltf.scene );
 
@@ -217,17 +187,40 @@ scene.add( light );
         //contoh pembuatan instansi
         // var data = new Minions();
         // var data2 = new Boss();
+        // create an AudioListener and add it to the camera
+        var listener = new THREE.AudioListener();
+        camera.add( listener );
 
+        // create a global audio source
+        var sound = new THREE.Audio( listener );
+
+        // load a sound and set it as the Audio object's buffer
+        var audioLoader = new THREE.AudioLoader();
+        audioLoader.load( 'sounds/Button_Back_Sound.ogg', function( buffer ) {
+                sound.setBuffer( buffer );
+                sound.setVolume(0.5);
+                sound.play();
+        });
         
         
         document.addEventListener("keydown", onDocumentKeyDown, false);
         function onDocumentKeyDown(event) {
             var keyCode = event.which;
             if (keyCode == 90) {//z
+                var mediaElement = new Audio( 'sounds/Button_Back_Sound.ogg' );
+                mediaElement.loop = true;                    
+                mediaElement.play();
+                audioLoader.load( 'sounds/Button_Back_Sound.ogg', function( buffer ) {
+                sound.setBuffer( buffer );
+                sound.setVolume(0.5);
+                sound.play();
+        });
                 window.open("http://localhost/final-project-team-Rikarudo-Mirosu/index.html","_self");
-            } else if (keyCode == 27) {//x
+                
+            
+            } else if (keyCode == 88) {//x
                 window.open("http://localhost/final-project-team-Rikarudo-Mirosu/petunjuk.html","_self");
-            } else if (keyCode == 67) {//esc
+            } else if (keyCode == 27) {//esc
                 while(scene.children.length > 0){ 
                      scene.remove(scene.children[0]); 
             }               
@@ -247,19 +240,16 @@ scene.add( light );
             //if(petunjuk) petunjuk.position.z = 4;
             //if(exit) exit.position.z = 4;
             if(bp) bp.position.z = 4;
+            if(judul) judul.position.z = 4;
+            if(judul) judul.position.x = -6;
+            if(judul) judul.position.y = 2;
 
+            if(mmp) mmp.position.z = 4;
+            if(mmp) mmp.position.y = -5;
+            if(mmp) mmp.position.x= 0.8;
+            if(mmp) mmp.rotation.y = 3.135;
+            if(judul) judul.rotation.y = 3.135;
 
-            if(play) play.position.y = 4;
-            if(petunjuk) petunjuk.position.y = 4;
-            if(exit) exit.position.y = 4;
-
-            if(play) play.rotation.x = 1.5;
-            if(petunjuk) petunjuk.rotation.x = 1.5;
-            if(exit) exit.rotation.x = 1.5;//1.5
-
-            if(play) play.rotation.y = -1.565;
-            if(petunjuk) petunjuk.rotation.y = -1.565;
-            if(exit) exit.rotation.y = -1.565;
             renderer.render(scene, camera);
         }
         

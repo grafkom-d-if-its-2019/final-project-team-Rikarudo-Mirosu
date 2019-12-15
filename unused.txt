@@ -34,3 +34,77 @@ file ini berfungsi untuk menyimpan snippet yang tidak dipakai lagi
             // }
 
         //});
+
+
+// 	// Materials
+	// var  NoiseGen, loader, scene, light, plane, plane_geometry, plane_material, camera;
+	// var planeTexture = new THREE.ImageUtils.loadTexture( 'grass.jpg' ); //256x256
+    // planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping; 
+    // planeTexture.repeat.set( 10, 10 );
+    // var planeMaterial = new THREE.MeshBasicMaterial( { map: planeTexture, side: THREE.DoubleSide } );
+    // // plane_material.wrapS =plane_material.wrapT = THREE.RepeatWrapping;
+	// // plane_material.repeat.set( 2.5, 2.5 );
+		
+	// 	//plane
+	// 	NoiseGen = new SimplexNoise;
+		
+	// planeGeometry = new THREE.PlaneGeometry( planewidth, planeheight, 1, 1 );
+	// 	for ( var i = 0; i <planeGeometry.vertices.length; i++ ) {
+	// 		var vertex =planeGeometry.vertices[i];
+	// 		vertex.z = NoiseGen.noise( vertex.x / 10, vertex.y / 10 ) * 2;
+	// 	}
+	// planeGeometry.computeFaceNormals();
+	// planeGeometry.computeVertexNormals();
+		
+	// 	// If your plane is not square as far as face count then the HeightfieldMesh
+	// 	// takes two more arguments at the end: # of x faces and # of y faces that were passed to THREE.PlaneMaterial
+	// 	// var plane = new Physijs.HeightfieldMesh(
+	// 	// plane_geometry,
+	// 	// plane_material,
+	// 	// 	0, // mass
+    //     // 	50,50);
+    //      var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+	// 	plane.rotation.x = Math.PI / -2;
+	// 	plane.receiveShadow = true;
+	// 	plane.position.z = 0;
+	// 	scene.add( plane );
+
+        // var updateFacts = []
+
+        // var overlayTexture	= new THREEx.DynamicTexture(512,512);
+        // overlayTexture.texture.needsUpdate = true;
+        // overlayTexture.context.font = "bolder 10px Verdana";
+        // overlayTexture.texture.anisotropy = renderer.capabilities.getMaxAnisotropy()
+        // updateFacts.push(function(delta, now){
+
+        //     var healthNow = player1.object.PlayerHealthNow
+            
+        // // update
+        // overlayTexture.clear(0xFFFFFF)
+        // overlayTexture.drawText(healthNow, undefined, 256, 0xFFFFFF)
+
+        // })
+
+
+
+        // var overlayGeometry = new THREE.PlaneGeometry(9, 5, 1, 1); 
+        // // var overlayMaterial = new THREE.MeshBasicMaterial({ color: 0xFFFFFF, transparent: true, opacity: 0.2 });
+        // var overlayMaterial = new THREE.MeshBasicMaterial({ map: overlayTexture.texture });
+
+        // var overlay = new THREE.Mesh( overlayGeometry, overlayMaterial );
+
+        // var quarternion = new THREE.Quarternion();
+        // quarternion.setFromAxisAngle( new THREE.Vector3( 0,1,0 ), Math.PI / 2);
+        // var quarternion = new THREE.Quaternion();
+        // overlay.applyQuaternion(quarternion)
+
+
+        // overlay.position.x = plane_limitx;
+        // overlay.position.y = -plane_limity - 1;
+        // overlay.position.z = 0.1;
+        //overlay.lookAt( 0, -5, 20 )
+        // overlay.lookAt(camera.position)
+        // overlay.quaternion.copy( camera. quaternion );
+        //helper = new THREE.FaceNormalsHelper( overlay, 5, 0x00ff00, 3 );
+        // scene.add(overlay)
+        //scene.add(helper)

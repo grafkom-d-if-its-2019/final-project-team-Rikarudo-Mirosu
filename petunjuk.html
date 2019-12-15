@@ -130,20 +130,20 @@
             var keyCode = event.which;
             if (keyCode == 90) {//z
                 window.open("http://localhost/final-project-team-Rikarudo-Mirosu/index.html","_self");
-            } else if (keyCode == 27) {//x
-                window.open("http://localhost/final-project-team-Rikarudo-Mirosu/petunjuk.html","_self");
+            } else if (keyCode == 77) {//m
+                window.open("http://localhost/final-project-team-Rikarudo-Mirosu/mainmenu.html","_self");
             } else if (keyCode == 67) {//esc
                 while(scene.children.length > 0){ 
                      scene.remove(scene.children[0]); 
-            }               
-            /*} else if (keyCode == 68) {
+            /*}               
+            } else if (keyCode == 68) {
                 cube.position.x += xSpeed;
             } else if (keyCode == 32) {
                 cube.position.set(0, 0, 0);
             }*/
+                };
+            } 
         };
-
-        }
         function animate() {
             
 
@@ -152,18 +152,19 @@
             //if(menu) menu.position.z = -5;
             //if(play) play.position.z = 4;
             //if(petunjuk) petunjuk.position.z = 4;
-            if(pk) pk.position.z = 5;
+            if(pk) pk.position.z = 2;
             if(pk) pk.rotation.z = 3.135;
-            
+
+            if(pk) pk.position.y = 2;
             //if(play) play.rotation.x = 1.5;
             //if(petunjuk) petunjuk.rotation.x = 1.5;
             if(pk) pk.rotation.x = 3;//1.5
-
+                
             //if(play) play.rotation.y = -1.56;
             //if(petunjuk) petunjuk.rotation.y = -1.56;
             //if(pk) pk.rotation.y = -2;
             renderer.render(scene, camera);
-        }
+        };
         
         animate();
         
