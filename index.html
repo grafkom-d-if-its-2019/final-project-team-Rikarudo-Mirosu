@@ -17,268 +17,247 @@
 </head>
 
 <body>
-    <!-- s<div id="info">Deskripsi</div> -->
-
     <script src="build/three.js"></script>
+    
     <script src="examples/js/loaders/GLTFLoader.js"></script>
-    <script src="build/Spawner.js"></script>
-    <script src="build/bullet.js"></script>
-    <script src="build/HitBox.js"></script>
-    <script src="build/player.js"></script>
-    <script src="build/music.js"></script>
-    <script src="build/simplex-noise.js"></script>
-    <script src="build/perlin.js"></script>
-    <script src="build/overlay.js"></script>
-    <script src="build/enemySpawner.js"></script>
-    <script src="build/threex.dynamictexture.js"></script>
-    <script src="build/enemyshoot.js"></script>
     <script>
         // bagian inisiasi objek
-
-        // var canvas = document.querySelector("canvas");
-
-        // window.addEventListener("resize", function(){
-        // canvas.setAttribute("width", window.innerWidth);
-        // canvas.setAttribute("height", window.innerHeight)
-        // })
-
-        var bullets = [];
-        var enemy = [];
-        var bulletEnemy = [];
-        var frame = 0;
-        var time = 0;
-
-        //const Perlin = require('build/perlin.js').Perlin;
-
+        
+        var bp,judul,mmp;
         var scene = new THREE.Scene();
+        //scene for menu
+        var scene1 = new THREE.Scene();
+        //camera for menu 
+        var camera1 = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+        //raycast and mouse
+        var raycaster = new THREE.Raycaster();
+        var mouse = new THREE.Vector2();
+        
+        function onMouseMove(event) {
+
+        // calculate mouse position in normalized device coordinates
+        // (-1 to +1) for both components
+
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+        }
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-
-        var directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-        scene.add(directionalLight);
-        var spotLight = new THREE.SpotLight(0xffffff);
-        spotLight.position.set(10, 100, 10);
-        scene.add(spotLight);
-        scene.add(new THREE.AmbientLight(0x252525));
-
         var renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.shadowMapEnabled = true;
-        renderer.shadowMap.type = THREE.PCFSoftShadow;
         document.body.appendChild(renderer.domElement);
         var geometry = new THREE.BoxGeometry(1, 1, 1);
         var material = new THREE.MeshBasicMaterial({
             color: 0xffff
         });
-        var player1 = new Player();
-        player1.castShadow = true;
 
-        var listener = new THREE.AudioListener();
-        camera.add(listener);
-        var sound = new THREE.Audio(listener);
-        // bagian movement objek
+        //light
+        var light = new THREE.PointLight( 0xffffff, 3, 100 );
+light.position.set( 1, 2, 7 );//x,y,z
+scene.add( light );
+		scene.add( light );
 
-        var yMovement = 0,
-            xMovement = 0,
-            delayshoot = 0;
-            isPause = false;
+        var menu,play,petunjuk,exit;
+        ///gltfloader
+        // Instantiate a loader
+        var loader = new THREE.GLTFLoader();
+        // Load a glTF resource
 
-        var LEFT = false,
-            RIGHT = false,
-            TOP = false,
-            BOTTOM = false,
-            SHOOT = false;
-            PAUSE = false;
+    loader.load(
+        // resource 
+        "model/baseplane1.glb",
+        // called when the resource is loaded
+        function ( gltf ) {
+
+                bp = gltf.scene;
+                
+                scene.add( bp );
+    
+                //scene.add( gltf.scene );
+
+                //gltf.animations; // Array<THREE.AnimationClip>
+                //gltf.scene; // THREE.Scene
+                //gltf.scenes; // Array<THREE.Scene>
+                //gltf.cameras; // Array<THREE.Camera>
+                //gltf.asset; // Object
+
+        },
+        // called when loading is in progresses
+        function ( xhr ) {
+
+                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+        },
+        // called when loading has errors
+        function ( error ) {
+
+                console.log( 'An error happened' );
+
+        }
+    );
+
+    loader.load(
+        // resource 
+        "model/mainmenupetunjuk.glb",
+        // called when the resource is loaded
+        function ( gltf ) {
+
+                mmp = gltf.scene;
+                
+                scene.add( mmp );
+    
+                //scene.add( gltf.scene );
+
+                //gltf.animations; // Array<THREE.AnimationClip>
+                //gltf.scene; // THREE.Scene
+                //gltf.scenes; // Array<THREE.Scene>
+                //gltf.cameras; // Array<THREE.Camera>
+                //gltf.asset; // Object
+
+        },
+        // called when loading is in progresses
+        function ( xhr ) {
+
+                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+        },
+        // called when loading has errors
+        function ( error ) {
+
+                console.log( 'An error happened' );
+
+        }
+    );
+
+    loader.load(
+        // resource 
+        "model/judul.glb",
+        // called when the resource is loaded
+        function ( gltf ) {
+
+                judul = gltf.scene;
+                
+                scene.add( judul );
+    
+                //scene.add( gltf.scene );
+
+                //gltf.animations; // Array<THREE.AnimationClip>
+                //gltf.scene; // THREE.Scene
+                //gltf.scenes; // Array<THREE.Scene>
+                //gltf.cameras; // Array<THREE.Camera>
+                //gltf.asset; // Object
+
+        },
+        // called when loading is in progresses
+        function ( xhr ) {
+
+                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+        },
+        // called when loading has errors
+        function ( error ) {
+
+                console.log( 'An error happened' );
+
+        }
+    );
+
+        ///
+        
         //ini buat bikin camera
-
-        camera.position.z = 20 //mode normal;
-            // camera.position.z = 50 //mode mata elang;
-
-        camera.position.y = -5;
+        camera.position.z = 15;
+        camera.position.y = 0;
         camera.position.x = 0;
-
-        loadMusic();
-
-        var planewidth = 40;
-        var planeheight = 69420;
-        var plane_limitx = (planewidth - 12) / 2;
-        var plane_limity = 9;
-
-        // unused Material 2
-        function lifeOverlay() {}
-        var angka = 0;
-        var lifepoint = player1.life
-            // angka += 1;
-
-        var scoreText = document.createElement('div');
-        var hpText = document.createElement('div');
-
-        var div = document.createElement('div');
-        var div2 = document.createElement('div');
-        var dieSplash = document.createElement('div');
-
-        scoreText.textContent = 'score:';
-        scoreText.style.fontSize = '20px'
-        scoreText.style.color = 'white';
-        scoreText.style.position = 'absolute';
-        scoreText.style.top = '80px';
-        scoreText.style.right = '90px';
-
-        hpText.textContent = 'lifepoint:';
-        hpText.style.fontSize = '20px'
-        hpText.style.color = 'white';
-        hpText.style.position = 'absolute';
-        hpText.style.top = '80px';
-        hpText.style.left = '50px';
-
-        div.textContent = angka;
-        div.style.fontSize = '100px'
-        div.style.color = 'white';
-        div.style.position = 'absolute';
-        div.style.top = '90px';
-        div.style.right = '90px';
-
-        div2.textContent = lifepoint;
-        div2.style.fontSize = '100px'
-        div2.style.color = 'white';
-        div2.style.position = 'absolute';
-        div2.style.top = '90px';
-        div2.style.left = '50px';
-
-        dieSplash.textContent = 'YOU LOSE';
-        dieSplash.style.fontSize = '100px'
-        dieSplash.style.color = 'white';
-        dieSplash.style.position = 'absolute';
-        dieSplash.style.top = '220px';
-        dieSplash.style.right = '30%';
-
-
-        document.body.appendChild(scoreText);
-        document.body.appendChild(hpText);
-        document.body.appendChild(div);
-        document.body.appendChild(div2);
-        //document.body.appendChild(dieSplash);
-
-        var planeTexture = new THREE.ImageUtils.loadTexture('grass.jpg'); //256x256
-        planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
-        planeTexture.repeat.set(10, 10);
-        var planeMaterial = new THREE.MeshBasicMaterial({
-            map: planeTexture,
+        //ini plane atau dataran dari gamenya.
+        var geometry = new THREE.PlaneGeometry(40, 30, 1, 1);
+        var material = new THREE.MeshBasicMaterial({
+            color: 0x2a2f59,
             side: THREE.DoubleSide
         });
-        var planeGeometry = new THREE.PlaneGeometry(planewidth, planeheight, 1, 1);
-        var plane = new THREE.Mesh(planeGeometry, planeMaterial);
-        plane.receiveShadow = true;
+        var plane = new THREE.Mesh(geometry, material);
         plane.position.z = 0;
         scene.add(plane);
 
-
-        var peak = 60;
-        var smoothing = 300;
-
-        function refreshVertices() {
-            var vertices = plane.geometry.attributes.position.array;
-
-            plane.geometry.attributes.position.needsUpdate = true;
-            plane.geometry.computeVertexNormals();
-        }
-
-
-        var bossBesar = new Boss(0, 30);
         //penambahan camera because ofc
         scene.add(camera);
+
         camera.lookAt(plane.position);
 
         //contoh pembuatan instansi
         // var data = new Minions();
         // var data2 = new Boss();
+        // create an AudioListener and add it to the camera
+        var listener = new THREE.AudioListener();
+        camera.add( listener );
 
-        function planeMovement() {
+        // create a global audio source
+        var sound = new THREE.Audio( listener );
 
-            plane.position.y -= 0.07;
+        // load a sound and set it as the Audio object's buffer
+        var audioLoader = new THREE.AudioLoader();  
+        audioLoader.load( 'music/With_The_Wind.mp3', function( buffer ) {
+                sound.setBuffer( buffer );
+                sound.setVolume(0.5);
+                sound.play();
+        });
+
+        document.addEventListener("keydown", onDocumentKeyDown, false);
+        function onDocumentKeyDown(event) {
+            var keyCode = event.which;
+            if (keyCode == 90) {//z
+                
+                audioLoader.load( 'music/Button_Back_Sound.ogg', function( buffer ) {
+                    sound.setBuffer( buffer );
+                    sound.setVolume(0.5);
+                    sound.play();
+                 });
+                window.open("http://localhost/grafkomfinal/game.html","_self");
+                
+            
+            } else if (keyCode == 88) {//x
+                audioLoader.load( 'music/Button_Back_Sound.ogg', function( buffer ) {
+                    sound.setBuffer( buffer );
+                    sound.setVolume(0.5);
+                    sound.play();
+                });
+                window.open("http://localhost/grafkomfinal/petunjuk.html","_self");
+            } else if (keyCode == 27) {//esc
+                while(scene.children.length > 0){ 
+                     scene.remove(scene.children[0]); 
+            }               
+            /*} else if (keyCode == 68) {
+                cube.position.x += xSpeed;
+            } else if (keyCode == 32) {
+                cube.position.set(0, 0, 0);
+            }*/
+        };
 
         }
-
-        Overlay();
-
-        function playerCoordinateCheck() {
-
-            // ngecek kordinat dari player, apakah keluar terrain atau ngga.
-            // kalau iya, bakal dimentokin sebatas terrain
-
-            // yang ini baru sebatas buat kamera normal, bakal
-            // keliatan sempit kalo pakai kamera elang
-
-            if (player1.object.position.x >= plane_limitx) {
-                player1.object.position.x = plane_limitx - 0.01;
-
-            }
-            if (player1.object.position.x <= -plane_limitx) {
-                player1.object.position.x = -plane_limitx + 0.01;
-
-            }
-            if (player1.object.position.y >= plane_limity) {
-                player1.object.position.y = plane_limity - 0.01;
-            }
-            // if (player1.object.position.y <= -plane_limity) {
-            //         player1.object.position.y = -plane_limity + 0.01;
-            // }
-
-            if (player1.object.position.y <= -(plane_limity + 1)) {
-                player1.object.position.y = -(plane_limity + 1) + 0.01;
-            }
-            // player.position.x = 0;
-            // player.position.y = -3;
-        }
-
-        function move() {
-
-            player1.object.position.y += yMovement;
-            player1.object.position.x += xMovement;
-        }
-
-        var deathTime = 0;
-        var alive = true;
-        setTimeout(animate, 0000);
-
         function animate() {
-        action();
-            if(!isPause)
-        {if (time == 0 && frame == 0) sound.play()
-        planeMovement();
-        move();
-        playerCoordinateCheck();
-        shoot();
-        Hitbox();
-        bulletPlaneCheck();
-        bulletAliveCheck();
-        moveEnemy();
-        shootEnemy();
-        frame++;
-        if (frame >= 6) {
-            if (alive)
-                enemySpawner();
-            time += 0.1;
-            frame = 0;
-            if (!alive) player1.PlayerRespawn()
-            div.textContent = angka;
-            div2.textContent = player1.life;
-            if (player1.life == 0) {
-                document.body.appendChild(dieSplash);
-            }
-        }
-        //oh, perlu diketahui, apabila ingin membuat kelas dan ingin mengatur posisinya,
-        // harus objek dari kelasnya yang di rombak
+            
 
-        //perhitungan delay shoot diberi biar tidak terjadi Unintentional Discharge / tiba tiba nembak sendiri!
-        if (delayshoot < 6)
-            delayshoot++;
+            requestAnimationFrame(animate);
+            //if(play) play.position.z = 4;
+            //if(petunjuk) petunjuk.position.z = 4;
+            //if(exit) exit.position.z = 4;
+            if(bp) bp.position.z = 4;
+            if(judul) judul.position.z = 4;
+            if(judul) judul.position.x = -6;
+            if(judul) judul.position.y = 2;
+            bp.rotation.y += 0.01;
+            if(mmp) mmp.position.z = 4;
+            if(mmp) mmp.position.y = -5;
+            if(mmp) mmp.position.x= 0.8;
+            if(mmp) mmp.rotation.y = 3.135;
+            if(judul) judul.rotation.y = 3.135;
 
-        requestAnimationFrame(animate);
-        renderer.render(scene, camera);}
+            renderer.render(scene, camera);
         }
+        
+        animate();
+        
     </script>
 </body>
-
-
 
 </html>

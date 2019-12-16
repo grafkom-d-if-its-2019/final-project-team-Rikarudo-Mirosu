@@ -2,7 +2,7 @@
 function Spawn(x, y) { //tulung diisikan Geomtery dan material untuk minions
     var geometry = new THREE.BoxGeometry(1, 1, 1);
     var material = new THREE.MeshBasicMaterial({
-        color: 0xffff
+        color: 'red'
     });
     var cubec = new THREE.Mesh(geometry, material);
     cubec.position.set(
@@ -16,7 +16,7 @@ function Spawn(x, y) { //tulung diisikan Geomtery dan material untuk minions
 function SpawnBoss(x, y) { //tulung diisikan Geomtery dan material untuk minions
     var geometry = new THREE.BoxGeometry(1, 1, 1);
     var material = new THREE.MeshBasicMaterial({
-        color: 0xffff
+        color: 'black'
     });
     var cubec = new THREE.Mesh(geometry, material);
     cubec.position.set(
