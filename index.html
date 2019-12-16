@@ -53,22 +53,7 @@
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-            
-        //  lightbox.position.x=0;
-        //  lightbox.position.y=0;
-        //  lightbox.position.z=0;
-
-        // var Light = new THREE.DirectionalLight(0xffffff, 10);
-        //  Light.position.set( 0, 1000, 0);
-        // //Light.target.position.set( 0, 0, 0 );
-        // var lightbox 
-        // Light.target = lightbox;
-        // scene.add(Light);
-        // Light.castShadow = true;
-         
-        
-        //plane.receiveShadow = true;
-
+       
  
 
             //    var dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
@@ -167,6 +152,21 @@
         document.body.appendChild(div);
         document.body.appendChild(div2);
         //document.body.appendChild(dieSplash);
+     
+        //  lightbox.position.x=0;
+        //  lightbox.position.y=0;
+        //  lightbox.position.z=0;
+
+        var Light = new THREE.DirectionalLight(0xff0000, 5);
+        Light.position.set( 0, 20, 0);
+        Light.target.position.set( 0, 0, 0 );
+        var lightbox 
+    
+        scene.add(Light);
+        Light.castShadow = true;
+         
+        
+        //plane.receiveShadow = true;
 
         var planeTexture = new THREE.ImageUtils.loadTexture('grass.jpg'); //256x256
         planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
@@ -177,7 +177,7 @@
         });
         var planeGeometry = new THREE.PlaneGeometry(planewidth, planeheight, 1, 1);
         var plane = new THREE.Mesh(planeGeometry, planeMaterial);
-        
+        plane.recieveShadow = true
         plane.position.z = 0;
         scene.add(plane);
 
@@ -204,7 +204,7 @@
 
         function planeMovement() {
 
-          //  plane.position.y -= 0.07;
+            plane.position.y -= 0.07;
 
         }
 
@@ -273,13 +273,9 @@
                 if (!alive) player1.PlayerRespawn()
                 div.textContent = angka;
                 div2.textContent = player1.life;
-<<<<<<< HEAD
-                
-=======
                 if (player1.life == 0) {
                     document.body.appendChild(dieSplash);
                 }
->>>>>>> ddaf3807b8ff75e17171f2e4432c050e84510570
             }
             //oh, perlu diketahui, apabila ingin membuat kelas dan ingin mengatur posisinya,
             // harus objek dari kelasnya yang di rombak
