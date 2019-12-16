@@ -16,7 +16,7 @@
         var audioLoader2 = new THREE.AudioLoader();
         audioLoader2.load('music/Salam Ganesha.mp3', function(buffer){
             sound.setBuffer(buffer);
-            sound.setVolume(0.5);
+            sound.setVolume(50);
             sound.play(); //belum di add ke scene
         })
     console.log("lagu ledakan keluar")
