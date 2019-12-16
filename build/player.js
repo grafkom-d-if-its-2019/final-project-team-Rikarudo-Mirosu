@@ -114,10 +114,26 @@ function action() {
             delayshoot = 0;
         }
     }
+    if (PAUSE) {
+        if(!isPause){
+            isPause = true;
+        }
+        else{
+            isPause = false;
+        }
+    }
 }
 
 
 document.onkeydown = function(e) {
+    if (e.keycode == 80)
+        {   console.log("aaaa")
+            if (PAUSE == false){
+            PAUSE = true;
+        }
+    else{
+            PAUSE = false;
+    }}
     if (e.keyCode == 65) LEFT = true;
     if (e.keyCode == 68) RIGHT = true;
     if (e.keyCode == 87) TOP = true;
