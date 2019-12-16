@@ -108,7 +108,7 @@ function action() {
     if (BOTTOM) {
         yMovement = -0.2;
     }
-    if (SHOOT) {
+    if (SHOOT && alive) {
         if (delayshoot > 3) {
             spawnshoot();
             delayshoot = 0;

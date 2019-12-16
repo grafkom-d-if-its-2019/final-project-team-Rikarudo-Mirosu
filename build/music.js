@@ -6,9 +6,10 @@
       audioLoader.load('music/Vivat ITS.mp3', function(buffer) {
             sound.setBuffer(buffer);
             sound.setLoop(true);
-            sound.setVolume(0.5);
+            sound.setVolume(50);
             sound.play(); //belum di add ke scene
       });
+      console.log("lagu backsound keluar")
   }
 
   function playerExplosion(){
@@ -18,4 +19,5 @@
             sound.setVolume(0.5);
             sound.play(); //belum di add ke scene
         })
+    console.log("lagu ledakan keluar")
   }
