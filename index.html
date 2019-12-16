@@ -78,6 +78,7 @@
         var renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.shadowMapEnabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadow;
         document.body.appendChild(renderer.domElement);
         var geometry = new THREE.BoxGeometry(1, 1, 1);
         var material = new THREE.MeshBasicMaterial({
@@ -98,12 +99,14 @@
         var yMovement = 0,
             xMovement = 0,
             delayshoot = 0;
+            isPause = false;
 
         var LEFT = false,
             RIGHT = false,
             TOP = false,
             BOTTOM = false,
             SHOOT = false;
+            PAUSE = false;
         //ini buat bikin camera
 
         camera.position.z = 20 //mode normal;
@@ -124,9 +127,27 @@
         var angka = 0;
         var lifepoint = player1.life
             // angka += 1;
+
+        var scoreText = document.createElement('div');
+        var hpText = document.createElement('div');
+
         var div = document.createElement('div');
         var div2 = document.createElement('div');
         var dieSplash = document.createElement('div');
+
+        scoreText.textContent = 'score:';
+        scoreText.style.fontSize = '20px'
+        scoreText.style.color = 'white';
+        scoreText.style.position = 'absolute';
+        scoreText.style.top = '80px';
+        scoreText.style.right = '90px';
+
+        hpText.textContent = 'lifepoint:';
+        hpText.style.fontSize = '20px'
+        hpText.style.color = 'white';
+        hpText.style.position = 'absolute';
+        hpText.style.top = '80px';
+        hpText.style.left = '50px';
 
         div.textContent = angka;
         div.style.fontSize = '100px'
@@ -147,8 +168,11 @@
         dieSplash.style.color = 'white';
         dieSplash.style.position = 'absolute';
         dieSplash.style.top = '220px';
-        dieSplash.style.right = '200px';
+        dieSplash.style.right = '30%';
 
+
+        document.body.appendChild(scoreText);
+        document.body.appendChild(hpText);
         document.body.appendChild(div);
         document.body.appendChild(div2);
         //document.body.appendChild(dieSplash);
@@ -157,13 +181,13 @@
         //  lightbox.position.y=0;
         //  lightbox.position.z=0;
 
-        var Light = new THREE.DirectionalLight(0xff0000, 5);
-        Light.position.set( 0, 20, 0);
-        Light.target.position.set( 0, 0, 0 );
-        var lightbox 
+        // var Light = new THREE.DirectionalLight(0xff0000, 5);
+        // Light.position.set( 0, 20, 0);
+        // Light.target.position.set( 0, 0, 0 );
+        // var lightbox 
     
-        scene.add(Light);
-        Light.castShadow = true;
+        // scene.add(Light);
+        // Light.castShadow = true;
          
         
         //plane.receiveShadow = true;
@@ -251,41 +275,40 @@
         setTimeout(animate, 0000);
 
         function animate() {
-            if (time == 0 && frame == 0) sound.play()
-            planeMovement();
-            action();
-            move();
-            playerCoordinateCheck();
-            shoot();
-            Hitbox();
-            bulletPlaneCheck();
-            bulletAliveCheck();
-            moveEnemy();
-            shootEnemy();
-            
-         
-            frame++;
-            if (frame >= 6) {
-                if (alive)
-                    enemySpawner();
-                time += 0.1;
-                frame = 0;
-                if (!alive) player1.PlayerRespawn()
-                div.textContent = angka;
-                div2.textContent = player1.life;
-                if (player1.life == 0) {
-                    document.body.appendChild(dieSplash);
-                }
+        action();
+            if(!isPause)
+        {if (time == 0 && frame == 0) sound.play()
+        planeMovement();
+        move();
+        playerCoordinateCheck();
+        shoot();
+        Hitbox();
+        bulletPlaneCheck();
+        bulletAliveCheck();
+        moveEnemy();
+        shootEnemy();
+        frame++;
+        if (frame >= 6) {
+            if (alive)
+                enemySpawner();
+            time += 0.1;
+            frame = 0;
+            if (!alive) player1.PlayerRespawn()
+            div.textContent = angka;
+            div2.textContent = player1.life;
+            if (player1.life == 0) {
+                document.body.appendChild(dieSplash);
             }
-            //oh, perlu diketahui, apabila ingin membuat kelas dan ingin mengatur posisinya,
-            // harus objek dari kelasnya yang di rombak
+        }
+        //oh, perlu diketahui, apabila ingin membuat kelas dan ingin mengatur posisinya,
+        // harus objek dari kelasnya yang di rombak
 
-            //perhitungan delay shoot diberi biar tidak terjadi Unintentional Discharge / tiba tiba nembak sendiri!
-            if (delayshoot < 6)
-                delayshoot++;
+        //perhitungan delay shoot diberi biar tidak terjadi Unintentional Discharge / tiba tiba nembak sendiri!
+        if (delayshoot < 6)
+            delayshoot++;
 
-            requestAnimationFrame(animate);
-            renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);}
         }
     </script>
 </body>
